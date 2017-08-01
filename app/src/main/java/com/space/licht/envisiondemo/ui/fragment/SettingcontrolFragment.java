@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.ui.activitys.BlockCellularDataActivity;
 import com.space.licht.envisiondemo.ui.activitys.CallOutActivity;
 import com.space.licht.envisiondemo.utils.JumpUtil;
 
@@ -54,6 +55,8 @@ public class SettingcontrolFragment extends Fragment {
             case R.id.setting_Blacklist:
                 break;
             case R.id.setting_Block_cellular_data:
+                //断网开关
+                JumpUtil.jump(getContext(),BlockCellularDataActivity.class);
                 break;
         }
     }

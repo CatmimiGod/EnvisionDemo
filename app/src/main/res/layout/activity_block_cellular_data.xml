@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:toggle="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/activity_call_out_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/colorBluePrimary">
+
+        <ImageView
+            android:id="@+id/activity_Block_cellular_data_back"
+            android:src="@mipmap/top_icon_back"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Block cellular data"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+        <TextView
+            android:layout_gravity="center"
+            android:textColor="@color/bel_grey_text"
+            android:text="Block cellular data"
+            android:textSize="20sp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.space.licht.envisiondemo.widget.view.ToggleButton
+            android:layout_width="54dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="30dp"/>
+        <ImageView
+            android:background="@color/gray"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+    </RelativeLayout>
+
+
+
+</LinearLayout>

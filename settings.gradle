@@ -1,0 +1,1 @@
+include ':app', ':kjsplayerlib', ':jcplayer-lib', ':lib_seach', ':module_test', ':MPChartLib'

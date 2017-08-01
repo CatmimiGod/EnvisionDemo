@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/EnvisionDemo.iml" filepath="$PROJECT_DIR$/EnvisionDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MPChartLib/MPChartLib.iml" filepath="$PROJECT_DIR$/MPChartLib/MPChartLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jcplayer-lib/jcplayer-lib.iml" filepath="$PROJECT_DIR$/jcplayer-lib/jcplayer-lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kjsplayerlib/kjsplayerlib.iml" filepath="$PROJECT_DIR$/kjsplayerlib/kjsplayerlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib_seach/lib_seach.iml" filepath="$PROJECT_DIR$/lib_seach/lib_seach.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_test/module_test.iml" filepath="$PROJECT_DIR$/module_test/module_test.iml" />
+    </modules>
+  </component>
+</project>

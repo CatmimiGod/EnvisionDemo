@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:search="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_seach"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.space.licht.lib_seach.SeachActivity">
+
+    <com.space.licht.lib_seach.widget.SearchView
+        android:id="@+id/csv_show"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="8dip"
+        android:background="@drawable/login_et_bg"
+        search:SearchTextSize="14sp"
+        >
+    </com.space.licht.lib_seach.widget.SearchView>
+
+
+    <ListView
+        android:id="@+id/lv_show"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    </ListView>
+
+</LinearLayout>

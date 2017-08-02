@@ -173,4 +173,10 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
     protected static View getRootView(Activity context) {
         return ((ViewGroup) context.findViewById(android.R.id.content)).getChildAt(0);
     }
+
+    @Override
+    public void onBackPressedSupport() {
+        super.onBackPressedSupport();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
 }

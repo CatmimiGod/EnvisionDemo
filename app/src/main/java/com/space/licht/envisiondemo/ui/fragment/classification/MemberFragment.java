@@ -18,9 +18,11 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.model.bean.Collection;
+import com.space.licht.envisiondemo.model.db.RealmHelper;
 import com.space.licht.envisiondemo.utils.JumpUtil;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +42,7 @@ public class MemberFragment extends Fragment {
     SwipeMenuListView mLvShow;
     @BindView(R.id.member_add_icon)
     ImageView mMemberAddIcon;
-    private ArrayList<DataBean> mSGDatas;
+    private List<Collection> mSGDatas;
     private SGAdapter sgAdapter;
 
     @Override
@@ -86,7 +88,7 @@ public class MemberFragment extends Fragment {
                 deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
                         0x3F, 0x25)));
                 // set item width
-                deleteItem.setWidth(dp2px(40));
+                deleteItem.setWidth(dp2px(60));
                 // set a icon
                 deleteItem.setIcon(R.mipmap.left_slip_icon_delete);
                 // add to menu
@@ -102,37 +104,43 @@ public class MemberFragment extends Fragment {
      * 初始化数据
      */
     private void initDataI() {
-        mSGDatas = new ArrayList<DataBean>();
-        DataBean sgbean1 = new DataBean();
-        sgbean1.setSgName("刘备");
-        sgbean1.setSgPetName("玄德");
-        sgbean1.setSgHeadBp(R.drawable.father);
-        sgbean1.setSgDescribe("刘备");
-        DataBean sgbean2 = new DataBean();
-        sgbean2.setSgName("关羽");
-        sgbean2.setSgPetName("云长");
-        sgbean2.setSgHeadBp(R.drawable.father_large);
-        sgbean2.setSgDescribe("关羽");
-        DataBean sgbean3 = new DataBean();
-        sgbean3.setSgName("张飞");
-        sgbean3.setSgPetName("翼德");
-        sgbean3.setSgHeadBp(R.drawable.mother);
-        sgbean3.setSgDescribe("张飞");
-        DataBean sgbean4 = new DataBean();
-        sgbean4.setSgName("赵云");
-        sgbean4.setSgPetName("子龙");
-        sgbean4.setSgHeadBp(R.drawable.son);
-        sgbean4.setSgDescribe("赵云");
-        DataBean sgbean5 = new DataBean();
-        sgbean5.setSgName("马超");
-        sgbean5.setSgPetName("孟起");
-        sgbean5.setSgHeadBp(R.drawable.daughter);
-        sgbean5.setSgDescribe("马超");
-        mSGDatas.add(sgbean1);
-        mSGDatas.add(sgbean2);
-        mSGDatas.add(sgbean3);
-        mSGDatas.add(sgbean4);
-        mSGDatas.add(sgbean5);
+//初始化假数据
+//        Collection bean = new Collection();
+//        bean.setNamed("Mother");
+//        bean.setHeadImg(R.drawable.mother);
+//        bean.setTel("628-458-5869");
+//        bean.setVoice(15);
+//        bean.setDataTime(20);
+//        RealmHelper.getInstance().insertCollection(bean);
+//        Collection bean2 = new Collection();
+//        bean2.setNamed("Father");
+//        bean2.setHeadImg(R.drawable.father);
+//        bean2.setTel("628-458-5876");
+//        bean2.setVoice(30);
+//        bean2.setDataTime(30);
+//        RealmHelper.getInstance().insertCollection(bean2);
+//        Collection bean3 = new Collection();
+//        bean3.setNamed("Son");
+//        bean3.setHeadImg(R.drawable.son);
+//        bean3.setTel("628-458-4826");
+//        bean3.setVoice(20);
+//        bean3.setDataTime(15);
+//        RealmHelper.getInstance().insertCollection(bean3);
+//        Collection bean4 = new Collection();
+//        bean4.setNamed("Daughter");
+//        bean4.setHeadImg(R.drawable.daughter);
+//        bean4.setTel("628-458-2896");
+//        bean4.setVoice(15);
+//        bean4.setDataTime(18);
+//        RealmHelper.getInstance().insertCollection(bean4);
+//        Collection bean5 = new Collection();
+//        bean5.setNamed("Pad");
+//        bean5.setHeadImg(R.drawable.ipad);
+//        bean5.setTel("628-458-5869");
+//        bean5.setVoice(0);
+//        bean5.setDataTime(0);
+//        RealmHelper.getInstance().insertCollection(bean5);
+        mSGDatas = RealmHelper.getInstance().getCollectionList();
     }
 
     /**

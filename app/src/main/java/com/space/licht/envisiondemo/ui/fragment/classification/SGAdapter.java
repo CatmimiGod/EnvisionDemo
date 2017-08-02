@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.model.bean.Collection;
 import com.space.licht.envisiondemo.widget.InnerListview;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.List;
 /**
  * SGAdapter
  */
-public class SGAdapter extends BaseSwipListAdapter{
+public class SGAdapter extends BaseSwipListAdapter {
     /**
      * 上下文
      */
@@ -27,7 +28,7 @@ public class SGAdapter extends BaseSwipListAdapter{
     /**
      * 数据源
      */
-    private List<DataBean> mDatas;
+    private List<Collection> mDatas;
     private boolean isClose = false;
 
     /**
@@ -36,7 +37,7 @@ public class SGAdapter extends BaseSwipListAdapter{
      * @param context
      * @param datas
      */
-    public SGAdapter(Context context, List<DataBean> datas) {
+    public SGAdapter(Context context, List<Collection> datas) {
         mContext = context;
         mDatas = datas;
     }
@@ -74,17 +75,14 @@ public class SGAdapter extends BaseSwipListAdapter{
         } else {
             vh = (ViewHolder) view.getTag();
         }
-        DataBean bean = (DataBean) getItem(position);
+        Collection bean = (Collection) getItem(position);
         if (null != bean) {
-            vh.mNameTv.setText(bean.getSgName());
-            vh.mPetNmaeTv.setText(bean.getSgPetName());
-            vh.mHeadImg.setImageResource(bean.getSgHeadBp());
-//            if (position == 1){
-                initDatas();
-                ProcessAdp adp = new ProcessAdp(mContext, mTimeList,
-                        mContentList);
-                vh.mListview.setAdapter(adp);
-//            }
+            vh.mNameTv.setText(bean.getNamed());
+            vh.mPetNmaeTv.setText(bean.getTel());
+            vh.mHeadImg.setImageResource(bean.getHeadImg());
+            initDatas();
+            ProcessAdp adp = new ProcessAdp(mContext, mTimeList, mContentList);
+            vh.mListview.setAdapter(adp);
 
             final ViewHolder finalVh = vh;
             vh.mSgIV.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +93,7 @@ public class SGAdapter extends BaseSwipListAdapter{
                         finalVh.mSgIV.setImageResource(R.drawable.icon_arrow_down);
                         finalVh.mLinearLaout2.setVisibility(View.VISIBLE);
                         isClose = false;
-                    }else{
+                    } else {
                         isClose = true;
                         finalVh.mSgIV.setImageResource(R.drawable.icon_arrow_right);
                         finalVh.mLinearLaout2.setVisibility(View.GONE);

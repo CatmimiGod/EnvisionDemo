@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.ui.activitys.CallOutActivity;
 import com.space.licht.envisiondemo.ui.activitys.EditActivity;
 import com.space.licht.envisiondemo.ui.fragment.classification.BaseSwipListAdapter;
 import com.space.licht.envisiondemo.utils.JumpUtil;
@@ -98,6 +99,7 @@ public class CallOutAdapter extends BaseSwipListAdapter {
             @Override
             public void onClick(View v) {
                 JumpUtil.jump(mContext,EditActivity.class);
+                ((CallOutActivity)mContext).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
         return view;

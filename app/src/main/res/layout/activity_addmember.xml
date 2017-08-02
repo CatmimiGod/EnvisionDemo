@@ -66,13 +66,15 @@
             android:layout_gravity="center"
             android:orientation="vertical">
 
-            <TextView
+            <EditText
                 android:id="@+id/add_member_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:text="Name"
+                android:hint="Name"
+                android:background="@null"
+                android:textColorHint="@color/gray"
                 android:textColor="@color/bel_grey_text"
                 android:textSize="25sp"/>
 
@@ -94,13 +96,15 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-        <TextView
+        <EditText
             android:id="@+id/add_member_telmember"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
-            android:text="Tel Number"
+            android:hint="Tel Number"
+            android:background="@null"
+            android:textColorHint="@color/gray"
             android:textColor="@color/bel_grey_text"
             android:textSize="25sp"/>
 
@@ -119,13 +123,15 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-        <TextView
+        <EditText
             android:id="@+id/add_member_privatenumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
-            android:text="Private Number"
+            android:hint="Private Number"
+            android:background="@null"
+            android:textColorHint="@color/gray"
             android:textColor="@color/bel_grey_text"
             android:textSize="25sp"/>
 

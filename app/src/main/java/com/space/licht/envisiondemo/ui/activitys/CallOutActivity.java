@@ -66,6 +66,7 @@ public class CallOutActivity extends BaseActivity {
             case R.id.activity_call_out_add_more:
                 //Todo add more
                 JumpUtil.jump(this, AddMoreActivity.class);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
         }
     }

@@ -1,5 +1,6 @@
 package com.space.licht.envisiondemo.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -27,5 +28,6 @@ public class JumpUtil {
     public static void jump(Context a, Class<?> clazz) {
         Intent intent = new Intent(a, clazz);
         a.startActivity(intent);
+        ((Activity)a).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

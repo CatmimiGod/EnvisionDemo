@@ -158,8 +158,8 @@ public class PickerView extends View {
         mViewHeight = getMeasuredHeight();
         mViewWidth = getMeasuredWidth();
         // 按照View的高度计算字体大小
-        mMaxTextSize = mViewHeight / 10.0f;
-        mMinTextSize = mMaxTextSize / 2f;
+        mMaxTextSize = mViewHeight / 8.0f;
+        mMinTextSize = mMaxTextSize / 4f;
         isInit = true;
         invalidate();
     }

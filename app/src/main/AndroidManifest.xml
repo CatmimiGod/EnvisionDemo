@@ -35,7 +35,11 @@
         <activity android:name=".ui.activitys.AddMoreActivity">
 
         </activity>
+        <activity android:name=".ui.activitys.AddTransferNumberActivity">
 
+        </activity>
+        <activity android:name=".ui.activitys.OneNumberActivity"/>
+        <activity android:name=".ui.activitys.CallControlActivity"/>
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data

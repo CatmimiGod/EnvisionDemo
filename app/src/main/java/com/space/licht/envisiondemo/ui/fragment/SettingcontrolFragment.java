@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.ui.activitys.BlockCellularDataActivity;
 import com.space.licht.envisiondemo.ui.activitys.CallOutActivity;
+import com.space.licht.envisiondemo.ui.activitys.OneNumberActivity;
 import com.space.licht.envisiondemo.utils.JumpUtil;
 
 import butterknife.ButterKnife;
@@ -18,7 +19,7 @@ import butterknife.OnClick;
 
 
 /**
- * Description: MemberFragment
+ * Description: SettingcontrolFragment
  */
 public class SettingcontrolFragment extends Fragment {
 
@@ -49,6 +50,8 @@ public class SettingcontrolFragment extends Fragment {
                 JumpUtil.jump(getContext(),CallOutActivity.class);
                 break;
             case R.id.setting_one_number:
+                //转接
+                JumpUtil.jump(getContext(),OneNumberActivity.class);
                 break;
             case R.id.setting_Whitelist:
                 break;

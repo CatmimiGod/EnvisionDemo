@@ -9,13 +9,12 @@ import android.widget.Toast;
 
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.base.BaseFragment;
+import com.space.licht.envisiondemo.model.bean.Collection;
+import com.space.licht.envisiondemo.model.db.RealmHelper;
 import com.space.licht.envisiondemo.ui.fragment.BarChart;
-import com.space.licht.envisiondemo.ui.fragment.ChartEntity;
 import com.space.licht.envisiondemo.ui.fragment.MySinkingView;
 import com.space.licht.envisiondemo.ui.fragment.PieChart;
-import com.space.licht.envisiondemo.ui.fragment.PieDataEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -35,6 +34,7 @@ public class DataFragment extends BaseFragment {
     @BindView(R.id.chart_barchart)
     BarChart mChartBarchart;
     private int[] mColors = {0x00a2ff, 0x666666, 0x999999, 0xFF800000, 0xFFFBD05A, 0xFFFA8358, 0x00a2ff, 0x666666, 0x999999, 0xFF800000, 0xFFFBD05A, 0xFFFA8358};
+    private List<Collection> mSGDatas;
 
     @Override
     protected int getLayout() {
@@ -44,12 +44,8 @@ public class DataFragment extends BaseFragment {
     @Override
     protected void initView(LayoutInflater inflater) {
         super.initView(inflater);
-        List<PieDataEntity> dataEntities = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            PieDataEntity entity = new PieDataEntity("name" + i, i + 1, mColors[i]);
-            dataEntities.add(entity);
-        }
-        mChartPie.setDataList(dataEntities);
+        mSGDatas = RealmHelper.getInstance().getCollectionList();
+        mChartPie.setDataList(mSGDatas);
 
         mChartPie.setOnItemPieClickListener(new PieChart.OnItemPieClickListener() {
             @Override
@@ -60,11 +56,7 @@ public class DataFragment extends BaseFragment {
         float percent = 0.56f;
         mChartWave.setPercent(percent);
 
-        List<ChartEntity> data = new ArrayList<>();
-//        for (int i = 0; i < 5; i++) {
-//            data.add(new ChartEntity(String.valueOf(i), (float) (Math.random() * 700)));
-//        }
-        mChartBarchart.setData(data);
+        mChartBarchart.setData(mSGDatas);
         mChartBarchart.setOnItemBarClickListener(new BarChart.OnItemBarClickListener() {
             @Override
             public void onClick(int position) {

@@ -99,7 +99,7 @@ public class RealmHelper implements DBHelper {
     }
 
     /**
-     * 收藏列表
+     * 查询所有数据
      *
      * @return
      */

@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.base.BaseActivity;
+import com.space.licht.envisiondemo.utils.JumpUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +48,7 @@ public class AddWhiteListActivity extends BaseActivity {
                 break;
             case R.id.add_member_done:
                 //获取文本数据保存
+                JumpUtil.jump(this,PlayVideoActivity.class);
                 finish();
                 break;
             case R.id.add_member_photo:

@@ -6,10 +6,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.space.licht.envisiondemo.model.bean.Collection;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +45,7 @@ public class PieChart extends View {
      */
     private RectF mRectFTouch;
 
-    private List<PieDataEntity> mDataList;
+    private List<Collection> mDataList;
     /**
      * 所有的数据加起来的总值
      */
@@ -101,14 +104,20 @@ public class PieChart extends View {
         mTextPaint = new Paint();
         mTextPaint.setAntiAlias(true);
         mTextPaint.setStyle(Paint.Style.FILL);
-        mTextPaint.setTextSize(30);
+        Typeface tf = Typeface.createFromAsset(context.getAssets(),
+                "fonts/PINGFANG REGULAR_0.TTF");
+        mTextPaint.setTypeface(tf);
+        mTextPaint.setTextSize(40);
 
 
         mBluePaint = new Paint();
         mBluePaint.setAntiAlias(true);
         mBluePaint.setStyle(Paint.Style.FILL);
-        mBluePaint.setTextSize(36);
-        mBluePaint.setColor(Color.BLUE);
+        mBluePaint.setTextSize(52);
+        Typeface tf2 = Typeface.createFromAsset(context.getAssets(),
+                "fonts/PINGFANG MEDIUM_0.TTF");
+        mTextPaint.setTypeface(tf2);
+        mBluePaint.setColor(0xff00a2ff);
 
         mPath = new Path();
     }
@@ -152,8 +161,8 @@ public class PieChart extends View {
         //起始地角度
         float startAngle = -80;
         for (int i = 0; i < mDataList.size(); i++) {
-            float sweepAngle = mDataList.get(i).getValue() / mTotalValue * 355;//每个扇形的角度
-            mPaint.setColor(mDataList.get(i).getColor());
+            float sweepAngle = mDataList.get(i).getVoice() / mTotalValue * 354;//每个扇形的角度
+            mPaint.setColor(mDataList.get(i).getUsedColor());
             //*******下面的两种方法选其一就可以 一个是通过画路径来实现 一个是直接绘制扇形***********
             mPath.moveTo(0, 0);
             if (position - 1 == i) {
@@ -179,37 +188,38 @@ public class PieChart extends View {
             startAngle += sweepAngle + 1;
             //绘制线和文本
             canvas.drawLine(pxs, pys, pxt, pyt, mLinePaint);
-            float res = mDataList.get(i).getValue() / mTotalValue * 100;
+            float res = mDataList.get(i).getVoice() / mTotalValue * 100;
             //提供精确的小数位四舍五入处理。
             double resToRound = CalculateUtil.round(res, 2);
             float v = startAngle % 360;
             Log.e(TAG, "drawPiePath: " + i);
             if (startAngle % 360.0 >= 120.0 && startAngle % 360.0 <= 300.0) {//2 3 象限
-                canvas.drawLine(pxt, pyt, pxt - 180, pyt, mLinePaint);
-                canvas.drawText(mDataList.get(i).getName(), pxt - mTextPaint.measureText(resToRound + "%") - 80, pyt - 5, mTextPaint);
-                canvas.drawText(mDataList.get(i).getValue() + "%", pxt - mTextPaint.measureText(resToRound + "%") - 80, pyt + 30, mTextPaint);
+                canvas.drawLine(pxt, pyt, pxt - 200, pyt, mLinePaint);
+                mBluePaint.setColor(0xff666666);
+                canvas.drawText(mDataList.get(i).getNamed(), pxt - mTextPaint.measureText(resToRound + "%") - 80, pyt - 5, mTextPaint);
+                canvas.drawText(mDataList.get(i).getVoice() + "%", pxt - mTextPaint.measureText(resToRound + "%") - 80, pyt + 45, mBluePaint);
             } else {
-                canvas.drawLine(pxt, pyt, pxt + 150, pyt, mLinePaint);
-                if (mDataList.get(i).getValue() != 53) {
-                    canvas.drawText(mDataList.get(i).getName(), pxt + 50, pyt - 10, mTextPaint);
-                    canvas.drawText(mDataList.get(i).getValue() + "%", pxt + 80, pyt + 30, mTextPaint);
+                canvas.drawLine(pxt, pyt, pxt + 160, pyt, mLinePaint);
+                if (!"Unused".equals(mDataList.get(i).getNamed())) {
+                    mBluePaint.setColor(0xff666666);
+                    canvas.drawText(mDataList.get(i).getNamed(), pxt + 50, pyt - 10, mTextPaint);
+                    canvas.drawText(mDataList.get(i).getVoice() + "%", pxt + 80, pyt + 40, mBluePaint);
                 } else {
                     Log.e(TAG, "drawPiePath:2 " + i);
-                    canvas.drawText(mDataList.get(i).getName(), pxt - mTextPaint.measureText(resToRound + "%") + 180, pyt - 5, mTextPaint);
-                    canvas.drawText("1100G", pxt - mTextPaint.measureText(resToRound + "%") + 170, pyt + 30, mBluePaint);
+                    mBluePaint.setColor(0xff00a2ff);
+                    canvas.drawText(mDataList.get(i).getNamed(), pxt - mTextPaint.measureText(resToRound + "%") + 180, pyt - 5, mTextPaint);
+                    canvas.drawText("1100G", pxt - mTextPaint.measureText(resToRound + "%") + 170, pyt + 45, mBluePaint);
                 }
-
-
             }
         }
 
     }
 
-    public void setDataList(List<PieDataEntity> dataList) {
-        this.mDataList = dataList;
+    public void setDataList(List<Collection> mSGDatas) {
+        this.mDataList = mSGDatas;
         mTotalValue = 0;
-        for (PieDataEntity pieData : mDataList) {
-            mTotalValue += pieData.getValue();
+        for (Collection pieData : mDataList) {
+            mTotalValue += pieData.getVoice();
         }
         angles = new float[mDataList.size()];
         invalidate();

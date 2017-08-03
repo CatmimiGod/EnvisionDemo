@@ -12,6 +12,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.space.licht.envisiondemo.model.bean.Collection;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +58,7 @@ public class BarChart extends View {
      * 矩形柱子  点击后的矩形
      */
     private Rect mBarRect, mBarRectClick;
-    private List<ChartEntity> mData;//数据集合
+    private List<Collection> mData;//数据集合
     /**
      * 右边的最大和最小值
      */
@@ -192,7 +194,7 @@ public class BarChart extends View {
                 getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
     }
 
-    public void setData(List<ChartEntity> list) {
+    public void setData(List<Collection> list) {
         this.mData = list;
         //计算最大值
         getRange(1200);
@@ -232,7 +234,7 @@ public class BarChart extends View {
         path.lineTo(mBarLeftXPoints.get(4)+20, 120);
         path.lineTo(mBarLeftXPoints.get(4), 120);
         path.close(); // 使这些点构成封闭的多边形
-        textPaint.setColor(Color.argb(120,120,1,20));
+        textPaint.setColor(0xfffc8458);
         canvas.drawPath(path,textPaint);
 
         Path path2 = new Path();
@@ -241,7 +243,7 @@ public class BarChart extends View {
         path2.lineTo(mBarLeftXPoints.get(4)+20, 160);
         path2.lineTo(mBarLeftXPoints.get(4), 160);
         path2.close(); // 使这些点构成封闭的多边形
-        textPaint.setColor(Color.argb(120,020,32,20));
+        textPaint.setColor(0xfffee6de);
         canvas.drawPath(path2,textPaint);
 
 
@@ -260,26 +262,25 @@ public class BarChart extends View {
         Log.i("StartIndex", "xStartIndex" + xStartIndex + "barWidth:" + barWidth + "barSpace" + barSpace + "leftMoving" + leftMoving);
         for (int i = 0; i < mData.size(); i++) {
             mBarRect.left = (int) (xStartIndex + barWidth * i + barSpace * (i + 1) - leftMoving)-20;
-//            mBarRect.top = (int) maxHeight + topMargin * 2 - (int) (maxHeight * (mData.get(i).getyValue() / maxDivisionValue));
+            mBarRect.top = (int) maxHeight + topMargin * 2 - (int) ((maxHeight * (mData.get(i).getVoiceUsed()) / maxDivisionValue));
             mBarRect.right = mBarRect.left + barWidth - 30;
             mBarLeftXPoints.add(mBarRect.left);
             mBarRightXPoints.add(mBarRect.right);
-            barPaint.setColor(Color.BLUE);
+            barPaint.setColor(mData.get(i).getUsedColor());
             Log.e(TAG, "drawBars: " + mBarRect.bottom);
             canvas.drawRect(mBarRect, barPaint);
 
 
             Rect mBarRects = new Rect();
             mBarRects.bottom = mBarRect.top;
-//            mBarRects.top = mBarRect.top - (int) (maxHeight * (mData.get(i).getyValue() / 1400));
+            mBarRects.top = (int)(mBarRect.top - maxHeight * ((mData.get(i).getVoice()*45 - mData.get(i).getVoiceUsed()) / 1400f));
             mBarRects.left = mBarRect.left;
             mBarRects.right = mBarRect.right;
-
-            barPaint.setColor(Color.RED);
+            barPaint.setColor(mData.get(i).getTotalColor());
             canvas.drawRect(mBarRects, barPaint);
 
-            canvas.drawText("" + mBarRect.top, mBarRect.left, mBarRect.top + 25, textPaint);
-            canvas.drawText("" + mBarRects.top, mBarRect.left, mBarRects.top, textPaint);
+            canvas.drawText("" + mData.get(i).getVoiceUsed(), mBarRect.left, mBarRect.top + 25, textPaint);
+            canvas.drawText("" + mData.get(i).getVoice()*45, mBarRect.left, mBarRects.top, textPaint);
         }
 
     }

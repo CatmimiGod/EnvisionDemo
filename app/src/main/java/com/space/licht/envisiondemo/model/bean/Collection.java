@@ -19,6 +19,45 @@ public class Collection extends RealmObject implements Serializable {
     public int dataTime;
     public String score;
     public int headImg;
+    private int mTotalColor;
+    private int mVoiceTotal = 4500;
+    private int mDataTotal = 3200;
+    private int mVoiceUsed;
+    private int mDataUsed;
+    private int mUsedColor;
+
+    public int getTotalColor() {
+        return mTotalColor;
+    }
+
+    public void setTotalColor(int totalColor) {
+        mTotalColor = totalColor;
+    }
+
+
+    public int getVoiceUsed() {
+        return mVoiceUsed;
+    }
+
+    public void setVoiceUsed(int used) {
+        mVoiceUsed = used;
+    }
+
+    public int getDataUsed() {
+        return mDataUsed;
+    }
+
+    public void setDataUsed(int used) {
+        mDataUsed = used;
+    }
+
+    public int getUsedColor() {
+        return mUsedColor;
+    }
+
+    public void setUsedColor(int usedColor) {
+        mUsedColor = usedColor;
+    }
 
 
     public String getId() {
@@ -91,7 +130,9 @@ public class Collection extends RealmObject implements Serializable {
 
     public void setHeadImg(int named) {
         this.headImg = named;
-    } public int getDataTime() {
+    }
+
+    public int getDataTime() {
         return dataTime;
     }
 

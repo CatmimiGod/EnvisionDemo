@@ -42,9 +42,32 @@ public class ChartFragment extends BaseFragment {
 
         pager.setAdapter(new MyPagerAdapter(getActivity().getSupportFragmentManager()));
         pager.setOffscreenPageLimit(2);
+        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0){
+                    mDot1.setEnabled(true);
+                    mDot2.setEnabled(false);
+                }else{
+                    mDot2.setEnabled(true);
+                    mDot1.setEnabled(false);
+                }
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         pager.setPageTransformer(false, new AlphaTransformer());
         pager.setPageMargin(30);
-        mDot1.setEnabled(false);
+        mDot2.setEnabled(false);
     }
 
 

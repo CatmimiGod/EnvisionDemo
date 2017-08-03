@@ -12,7 +12,6 @@ import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.model.bean.Collection;
 import com.space.licht.envisiondemo.widget.InnerListview;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -80,8 +79,7 @@ public class SGAdapter extends BaseSwipListAdapter {
             vh.mNameTv.setText(bean.getNamed());
             vh.mPetNmaeTv.setText(bean.getTel());
             vh.mHeadImg.setImageResource(bean.getHeadImg());
-            initDatas();
-            ProcessAdp adp = new ProcessAdp(mContext, mTimeList, mContentList);
+            ProcessAdp adp = new ProcessAdp(mContext);
             vh.mListview.setAdapter(adp);
 
             final ViewHolder finalVh = vh;
@@ -129,28 +127,4 @@ public class SGAdapter extends BaseSwipListAdapter {
         LinearLayout mLinearLaout2;
     }
 
-    private List<String> mTimeList = new ArrayList<String>();
-    private List<String> mContentList = new ArrayList<String>();
-
-    private void initDatas() {
-
-        mContentList.clear();
-        mContentList.add("希望此demo对您有帮助");
-        mContentList.add("欢迎下载");
-        mContentList.add("请提出更好的建议");
-        mContentList.add("如果能够修改更好的请更新到github上面");
-        mContentList.add("欢迎前去本人的csdn技术博客");
-        mContentList.add("欢迎前去本人的github");
-        mContentList.add("谢谢您的配合！！");
-
-        mTimeList.clear();
-        mTimeList.add("2016-07-18 09:23:14");
-        mTimeList.add("2016-07-19 09:23:14");
-        mTimeList.add("2016-07-20 09:23:14");
-        mTimeList.add("2016-07-21 09:23:14");
-        mTimeList.add("2016-07-22 09:23:14");
-        mTimeList.add("2016-07-23 09:23:14");
-        mTimeList.add("2016-07-25 09:23:14");
-
-    }
 }

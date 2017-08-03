@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/white"
     >
     <LinearLayout
+        android:layout_weight="3"
         android:id="@+id/chart_head"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_height="120dp">
+        android:layout_height="0dp">
         <RelativeLayout
             android:layout_margin="20dp"
-            android:layout_weight="5"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="match_parent">
             <TextView
                 android:text="Voice"
                 android:textColor="@color/black"
-                android:textSize="30dp"
+                android:textSize="40sp"
                 android:id="@+id/chart_voice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -26,16 +27,16 @@
             <TextView
                 android:layout_alignParentRight="true"
                 android:text="4500"
-                android:textColor="@color/black"
-                android:textSize="30dp"
+                android:textColor="#00a2ff"
+                android:textSize="37.5sp"
                 android:id="@+id/chart_date_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:layout_below="@+id/chart_voice"
                 android:text="Pie&amp;Bar chart"
-                android:textColor="@color/black"
-                android:textSize="15dp"
+                android:textColor="#999"
+                android:textSize="15sp"
                 android:id="@+id/chart_voide_above"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -43,9 +44,9 @@
             <TextView
                 android:layout_alignParentRight="true"
                 android:text="mins this mouth"
+                android:textColor="#999"
+                android:textSize="15sp"
                 android:layout_below="@+id/chart_date_time"
-                android:textColor="@color/black"
-                android:textSize="15dp"
                 android:id="@+id/chart_date_time_above"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -54,11 +55,12 @@
     </LinearLayout>
 
 <RelativeLayout
+    android:layout_weight="5"
     android:layout_below="@+id/chart_head"
     android:id="@+id/chart_piewave_rl"
     android:layout_centerHorizontal="true"
     android:layout_width="match_parent"
-    android:layout_height="250dp">
+    android:layout_height="0dp">
     <com.space.licht.envisiondemo.ui.fragment.PieChart
         android:id="@+id/chart_pie"
         android:layout_centerInParent="true"
@@ -68,15 +70,16 @@
         android:id="@+id/chart_wave"
         android:background="@drawable/voice_icon_noselect"
         android:layout_centerInParent="true"
-        android:layout_width="120dp"
-        android:layout_height="120dp">
+        android:layout_width="100dp"
+        android:layout_height="100dp">
     </com.space.licht.envisiondemo.ui.fragment.MySinkingView>
 </RelativeLayout>
 
     <com.space.licht.envisiondemo.ui.fragment.BarChart
+        android:layout_weight="4"
         android:id="@+id/chart_barchart"
         android:layout_below="@+id/chart_piewave_rl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"/>
 
-</RelativeLayout>
+</LinearLayout>

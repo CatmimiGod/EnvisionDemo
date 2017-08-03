@@ -29,8 +29,9 @@ public class VoiceFragment extends BaseFragment {
     MySinkingView mChartWave;
     @BindView(R.id.chart_barchart)
     BarChart mChartBarchart;
-    private int[] mColors = {0xFFCCFF00, 0xFF6495ED, 0xFFE32636, 0xFF800000, 0xFF808000, 0xFFFF8C69, 0xFF808080,
-            0xFFE6B800, 0xFF7CFC00};
+    private int[] mColors = {0xff00a2ff, 0xFFBDD757, 0xFFF0E05A, 0xFFFBD05A, 0xFFFAAC5D, 0xFFFA8358 };
+    private int[] mNumber = {53,18,15,12,25,30};
+    private String[] mName = {"Unused","Daughter","Son","ipad","wife","Father"};
 
     @Override
     protected int getLayout() {
@@ -41,8 +42,8 @@ public class VoiceFragment extends BaseFragment {
     protected void initView(LayoutInflater inflater) {
         super.initView(inflater);
         List<PieDataEntity> dataEntities = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            PieDataEntity entity = new PieDataEntity("name" + i, i + 1, mColors[i]);
+        for (int i = 0; i < 6; i++) {
+            PieDataEntity entity = new PieDataEntity(mName[i], mNumber[i], mColors[i]);
             dataEntities.add(entity);
         }
         mChartPie.setDataList(dataEntities);

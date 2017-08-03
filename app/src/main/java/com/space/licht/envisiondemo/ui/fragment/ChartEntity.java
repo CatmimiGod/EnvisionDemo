@@ -5,31 +5,40 @@ package com.space.licht.envisiondemo.ui.fragment;
  * 邮箱：657083984@qq.com
  */
 public class ChartEntity {
-    private String xLabel;
-    private Float yValue;
+    private String mTotalColor;
+    private String mTotal;
+    private String mUsed;
+    private String mUsedColor;
 
-    public ChartEntity(String xLabel, Float yValue) {
-        this.xLabel = xLabel;
-        this.yValue = yValue;
+    public String getTotalColor() {
+        return mTotalColor;
     }
 
-    public String getxLabel() {
-        return xLabel;
+    public void setTotalColor(String totalColor) {
+        mTotalColor = totalColor;
     }
 
-    public void setxLabel(String xLabel) {
-        this.xLabel = xLabel;
+    public String getTotal() {
+        return mTotal;
     }
 
-    public ChartEntity(Float yValue) {
-        this.yValue = yValue;
+    public void setTotal(String total) {
+        mTotal = total;
     }
 
-    public Float getyValue() {
-        return yValue;
+    public String getUsed() {
+        return mUsed;
     }
 
-    public void setyValue(Float yValue) {
-        this.yValue = yValue;
+    public void setUsed(String used) {
+        mUsed = used;
+    }
+
+    public String getUsedColor() {
+        return mUsedColor;
+    }
+
+    public void setUsedColor(String usedColor) {
+        mUsedColor = usedColor;
     }
 }

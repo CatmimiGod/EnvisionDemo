@@ -69,11 +69,11 @@
         android:layout_marginRight="10dp"
         android:background="@color/gray_bg"
         android:orientation="vertical"
-        android:visibility="gone" >
+         >
         <TextView
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="20dp"
             android:text="Recent calls"
             android:textSize="18dp"
             android:textColor="@color/dark_black"
@@ -82,6 +82,7 @@
 
         <com.space.licht.envisiondemo.widget.InnerListview
             android:id="@+id/lv_start_aoc"
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"

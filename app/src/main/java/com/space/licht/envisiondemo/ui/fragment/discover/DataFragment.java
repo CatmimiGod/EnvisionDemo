@@ -34,8 +34,7 @@ public class DataFragment extends BaseFragment {
     MySinkingView mChartWave;
     @BindView(R.id.chart_barchart)
     BarChart mChartBarchart;
-    private int[] mColors = {0xFFCCFF00, 0xFF6495ED, 0xFFE32636, 0xFF800000, 0xFF808000, 0xFFFF8C69, 0xFF808080,
-            0xFFE6B800, 0xFF7CFC00};
+    private int[] mColors = {0x00a2ff, 0x666666, 0x999999, 0xFF800000, 0xFFFBD05A, 0xFFFA8358, 0x00a2ff, 0x666666, 0x999999, 0xFF800000, 0xFFFBD05A, 0xFFFA8358};
 
     @Override
     protected int getLayout() {
@@ -62,9 +61,9 @@ public class DataFragment extends BaseFragment {
         mChartWave.setPercent(percent);
 
         List<ChartEntity> data = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            data.add(new ChartEntity(String.valueOf(i), (float) (Math.random() * 700)));
-        }
+//        for (int i = 0; i < 5; i++) {
+//            data.add(new ChartEntity(String.valueOf(i), (float) (Math.random() * 700)));
+//        }
         mChartBarchart.setData(data);
         mChartBarchart.setOnItemBarClickListener(new BarChart.OnItemBarClickListener() {
             @Override

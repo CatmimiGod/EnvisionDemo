@@ -15,9 +15,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
-import com.space.licht.envisiondemo.ui.fragment.classification.DataBean;
+import com.space.licht.envisiondemo.model.bean.Collection;
+import com.space.licht.envisiondemo.model.db.RealmHelper;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +48,7 @@ public class CommunityFragment extends Fragment {
     @BindView(R.id.progress_total_voice)
     TextView mProgressTotalVoice;
 
-    private ArrayList<DataBean> mSGDatas;
+    private List<Collection> mSGDatas;
     private CommunityAdapter mCommunityAdapter;
     //假设的总进度，最多为100，可自行调整
     private int status = 21;
@@ -69,7 +70,6 @@ public class CommunityFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
         View mView = inflater.inflate(R.layout.fragment_community_view, null);
         //得到屏幕的宽
         width = DensityUtil.dip2px(getContext(), 300);
@@ -81,7 +81,8 @@ public class CommunityFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initDataI();
+        //获取数据
+        mSGDatas = RealmHelper.getInstance().getCollectionList();
         initViewI();
         initProgress();
     }
@@ -90,37 +91,7 @@ public class CommunityFragment extends Fragment {
      * 初始化数据
      */
     private void initDataI() {
-        mSGDatas = new ArrayList<DataBean>();
-        DataBean sgbean1 = new DataBean();
-        sgbean1.setSgName("刘备");
-        sgbean1.setSgPetName("玄德");
-        sgbean1.setSgHeadBp(R.drawable.father);
-        sgbean1.setSgDescribe("刘备");
-        DataBean sgbean2 = new DataBean();
-        sgbean2.setSgName("关羽");
-        sgbean2.setSgPetName("云长");
-        sgbean2.setSgHeadBp(R.drawable.father_large);
-        sgbean2.setSgDescribe("关羽");
-        DataBean sgbean3 = new DataBean();
-        sgbean3.setSgName("张飞");
-        sgbean3.setSgPetName("翼德");
-        sgbean3.setSgHeadBp(R.drawable.mother);
-        sgbean3.setSgDescribe("张飞");
-        DataBean sgbean4 = new DataBean();
-        sgbean4.setSgName("赵云");
-        sgbean4.setSgPetName("子龙");
-        sgbean4.setSgHeadBp(R.drawable.son);
-        sgbean4.setSgDescribe("赵云");
-        DataBean sgbean5 = new DataBean();
-        sgbean5.setSgName("马超");
-        sgbean5.setSgPetName("孟起");
-        sgbean5.setSgHeadBp(R.drawable.daughter);
-        sgbean5.setSgDescribe("马超");
-        mSGDatas.add(sgbean1);
-        mSGDatas.add(sgbean2);
-        mSGDatas.add(sgbean3);
-        mSGDatas.add(sgbean4);
-        mSGDatas.add(sgbean5);
+
     }
 
     /**

@@ -6,12 +6,12 @@ package com.space.licht.envisiondemo.ui.fragment;
 public class PieDataEntity {
 
     private String name;
-    private float value;
+    private int value;
     private float percent;
     private int color = 0;
     private float angle = 0;
 
-    public PieDataEntity(String name, float value, int color) {
+    public PieDataEntity(String name, int value, int color) {
         this.name = name;
         this.value = value;
         this.color = color;
@@ -25,11 +25,11 @@ public class PieDataEntity {
         this.name = name;
     }
 
-    public float getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(float value) {
+    public void setValue(int value) {
         this.value = value;
     }
 

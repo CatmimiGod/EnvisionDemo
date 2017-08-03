@@ -10,24 +10,17 @@ import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
 
-import java.util.List;
-
 public class ProcessAdp extends BaseAdapter {
     private Context context;
-    private List<String> timeList;
-    private List<String> contentList;
 
-    public ProcessAdp(Context context, List<String> timeList,
-                      List<String> contentList) {
+    public ProcessAdp(Context context) {
         super();
         this.context = context;
-        this.timeList = timeList;
-        this.contentList = contentList;
     }
 
     @Override
     public int getCount() {
-        return contentList != null ? contentList.size() : 0;
+        return 8;
     }
 
     @Override

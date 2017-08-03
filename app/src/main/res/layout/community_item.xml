@@ -120,7 +120,7 @@
                 android:layout_alignParentRight="true"
                 android:maxHeight="15px"
                 android:minHeight="7px"
-                android:progressDrawable="@drawable/xml_seekbar_progress"
+                android:progressDrawable="@drawable/xml_seekbar_progress_data"
                 android:thumb="@mipmap/community_icon_switch_botton"
                 android:thumbOffset="7px"/>
         </RelativeLayout>
@@ -171,7 +171,7 @@
                 android:layout_marginRight="10dp"
                 android:maxHeight="15px"
                 android:minHeight="7px"
-                android:progressDrawable="@drawable/xml_seekbar_progress"
+                android:progressDrawable="@drawable/xml_seekbar_progress_voice"
                 android:thumb="@mipmap/community_icon_switch_botton"
                 android:thumbOffset="7px"/>
         </RelativeLayout>

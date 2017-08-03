@@ -34,152 +34,180 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_width="20dp"
-            android:layout_height="5dp"
-            android:background="@mipmap/top_icon_add"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Allocated"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Total Package"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:text="Data"
-            android:textColor="@color/bel_grey_text"/>
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/community_head_icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/btn_border_black"/>
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Allocated"
+                android:textColor="@color/bel_grey_text"
+                android:textSize="20sp"/>
 
-                <TextView
-                    android:id="@+id/progress_precent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0G"
-                    android:textColor="#666"
-                    android:textSize="12sp"/>
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/btn_border_gray"/>
 
-                <TextView
-                    android:id="@+id/progress_total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="35dp"
-                    android:text="30G"
-                    android:textColor="#666"
-                    android:textSize="12sp"/>
-            </RelativeLayout>
-
-
-            <ProgressBar
-                android:id="@+id/pb_progressbar"
-                style="@style/StyleProgressBarMini"
-                android:layout_width="300dp"
-                android:layout_height="10dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/btn_border_green"
-                android:max="100"
-                android:progress="0"
-                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Total Package"
+                android:textColor="@color/bel_grey_text"
+                android:textSize="20sp"/>
         </LinearLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:text="Voice"
-            android:textColor="@color/bel_grey_text"/>
 
         <LinearLayout
+            android:layout_centerVertical="true"
+            android:id="@+id/community_data_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <RelativeLayout
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:textSize="18sp"
+                android:text="Data"
+                android:textColor="@color/bel_grey_text"/>
+
+            <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/progress_precent_voice"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="0Hours"
-                    android:textColor="#666"
-                    android:textSize="12sp"/>
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/progress_total_voice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="35dp"
-                    android:text="75Hours"
-                    android:textColor="#666"
-                    android:textSize="12sp"/>
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/progress_precent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0G"
+                        android:textColor="#666"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/progress_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="35dp"
+                        android:text="30G"
+                        android:textColor="#666"
+                        android:textSize="16sp"/>
+                </RelativeLayout>
 
 
-            <ProgressBar
-                android:id="@+id/pb_progressbar_voice"
-                style="@style/StyleProgressBarMini"
-                android:layout_width="300dp"
-                android:layout_height="10dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/btn_border_green"
-                android:max="100"
-                android:progress="0"
-                />
+                <ProgressBar
+                    android:id="@+id/pb_progressbar"
+                    style="@style/StyleProgressBarMini"
+                    android:layout_width="300dp"
+                    android:layout_height="10dp"
+
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/btn_border_green"
+                    android:max="100"
+                    android:progress="0"
+                    />
+            </LinearLayout>
+
+
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="Voice"
+                android:textColor="@color/bel_grey_text"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/progress_precent_voice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0Hours"
+                        android:textColor="#666"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/progress_total_voice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="35dp"
+                        android:text="75Hours"
+                        android:textColor="#666"
+                        android:textSize="16sp"/>
+                </RelativeLayout>
+
+
+                <ProgressBar
+                    android:id="@+id/pb_progressbar_voice"
+                    style="@style/StyleProgressBarMini2"
+                    android:layout_width="300dp"
+                    android:layout_height="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/btn_border_green"
+                    android:max="100"
+                    android:progress="0"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/community_lv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="10dp"
+        android:layout_weight="4"
         android:background="@color/white"
         >
     </ListView>

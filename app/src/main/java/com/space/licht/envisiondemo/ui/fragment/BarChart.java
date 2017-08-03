@@ -195,13 +195,7 @@ public class BarChart extends View {
     public void setData(List<ChartEntity> list) {
         this.mData = list;
         //计算最大值
-        maxValueInItems = list.get(0).getyValue();
-        for (ChartEntity entity : list) {
-            if (entity.getyValue() > maxValueInItems) {
-                maxValueInItems = entity.getyValue();
-            }
-        }
-        getRange(1000);
+        getRange(1200);
         invalidate();
     }
 
@@ -266,7 +260,7 @@ public class BarChart extends View {
         Log.i("StartIndex", "xStartIndex" + xStartIndex + "barWidth:" + barWidth + "barSpace" + barSpace + "leftMoving" + leftMoving);
         for (int i = 0; i < mData.size(); i++) {
             mBarRect.left = (int) (xStartIndex + barWidth * i + barSpace * (i + 1) - leftMoving)-20;
-            mBarRect.top = (int) maxHeight + topMargin * 2 - (int) (maxHeight * (mData.get(i).getyValue() / maxDivisionValue));
+//            mBarRect.top = (int) maxHeight + topMargin * 2 - (int) (maxHeight * (mData.get(i).getyValue() / maxDivisionValue));
             mBarRect.right = mBarRect.left + barWidth - 30;
             mBarLeftXPoints.add(mBarRect.left);
             mBarRightXPoints.add(mBarRect.right);
@@ -277,7 +271,7 @@ public class BarChart extends View {
 
             Rect mBarRects = new Rect();
             mBarRects.bottom = mBarRect.top;
-            mBarRects.top = mBarRect.top - (int) (maxHeight * (mData.get(i).getyValue() / 1400));
+//            mBarRects.top = mBarRect.top - (int) (maxHeight * (mData.get(i).getyValue() / 1400));
             mBarRects.left = mBarRect.left;
             mBarRects.right = mBarRect.right;
 
@@ -304,8 +298,6 @@ public class BarChart extends View {
             barWidth = barMinWidth;
             barSpace = barMinSpace;
         }
-//        barWidth = DensityUtil.dip2px(getContext(), 10);
-//        barSpace = DensityUtil.dip2px(getContext(), 20);
         maxRight = (int) (xStartIndex + (barSpace + barWidth) * mData.size()) + barSpace * 2 - 20;
         minRight = mTotalWidth - barSpace - leftMargin - 20;
     }
@@ -332,7 +324,7 @@ public class BarChart extends View {
      * @param canvas
      */
     private void drawLeftYAxis(Canvas canvas) {
-        float eachHeight = (maxHeight / 4f);
+        float eachHeight = ((yStartIndex-topMargin / 2 - 80) / 4f);
 
 
         for (int i = 0; i <= 4; i++) {

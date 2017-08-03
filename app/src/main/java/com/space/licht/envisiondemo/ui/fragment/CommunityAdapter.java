@@ -2,6 +2,7 @@ package com.space.licht.envisiondemo.ui.fragment;
 
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,13 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.model.bean.Collection;
 import com.space.licht.envisiondemo.ui.fragment.classification.BaseSwipListAdapter;
-import com.space.licht.envisiondemo.ui.fragment.classification.DataBean;
 
+import java.text.DecimalFormat;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -31,7 +35,7 @@ public class CommunityAdapter extends BaseSwipListAdapter {
     /**
      * 数据源
      */
-    private List<DataBean> mDatas;
+    private List<Collection> mDatas;
 
     boolean mIsgone = false;
     private final int width;
@@ -43,7 +47,7 @@ public class CommunityAdapter extends BaseSwipListAdapter {
      * @param context
      * @param datas
      */
-    public CommunityAdapter(Context context, List<DataBean> datas, boolean isgone, Handler handler) {
+    public CommunityAdapter(Context context, List<Collection> datas, boolean isgone, Handler handler) {
         mContext = context;
         mDatas = datas;
         mIsgone = isgone;
@@ -81,15 +85,21 @@ public class CommunityAdapter extends BaseSwipListAdapter {
             vh.mVoiceSeekBar = (SeekBar) view.findViewById(R.id.voice_allocation_seekbar);
             vh.dataProportion = (TextView) view.findViewById(R.id.data_allocation_proportion);
             vh.voiceProportion = (TextView) view.findViewById(R.id.voice_allocation_proportion);
+            vh.dataAllocationAmount = (TextView) view.findViewById(R.id.data_allocation_amount);
+            vh.voiceAllocationAmount = (TextView) view.findViewById(R.id.voice_allocation_amount);
             view.setTag(vh);
         } else {
             vh = (ViewHolder) view.getTag();
         }
-        DataBean bean = (DataBean) getItem(position);
+        Collection bean = (Collection) getItem(position);
         if (null != bean) {
-            vh.name.setText(bean.getSgName());
-            vh.tel.setText(bean.getSgPetName());
-            vh.mHeadImg.setImageResource(bean.getSgHeadBp());
+            vh.name.setText(bean.getNamed());
+            vh.tel.setText(bean.getTel());
+            vh.mHeadImg.setImageResource(bean.getHeadImg());
+            dataMove(bean.getDataTime(),vh);
+            vh.mDataSeekBar.setProgress(bean.getDataTime());
+            voiceMove(bean.getVoice(),vh);
+            vh.mVoiceSeekBar.setProgress(bean.getVoice());
         }
 
         if (mIsgone) {
@@ -146,6 +156,13 @@ public class CommunityAdapter extends BaseSwipListAdapter {
                     @Override
                     public void run() {
                         vh.dataProportion.setText(progress + "%");
+
+                        float text = progress;
+                        float right = (text/100)*9;
+                        DecimalFormat df = new DecimalFormat("#0.00 ");
+                        String format = df.format(right);
+                        Log.e(TAG, "text : " + text );
+                        vh.dataAllocationAmount.setText(format+"G");
                         vh.dataProportion.setTranslationX(progress * scrollDistance);
                     }
                 });
@@ -168,6 +185,11 @@ public class CommunityAdapter extends BaseSwipListAdapter {
                     @Override
                     public void run() {
                         vh.voiceProportion.setText(progress + "%");
+                        float text = progress;
+                        float right = (text/100)*25;
+                        DecimalFormat df = new DecimalFormat("#0.00");
+                        String format = df.format(right);
+                        vh.voiceAllocationAmount.setText(format+"Hours");
                         vh.voiceProportion.setTranslationX(progress * scrollDistance);
                     }
                 });
@@ -208,6 +230,8 @@ public class CommunityAdapter extends BaseSwipListAdapter {
         //比例
         TextView dataProportion;
         TextView voiceProportion;
+        public TextView dataAllocationAmount;
+        public TextView voiceAllocationAmount;
     }
 
     public void setIsgone(boolean b) {

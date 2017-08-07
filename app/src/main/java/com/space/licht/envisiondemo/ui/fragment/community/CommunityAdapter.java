@@ -1,4 +1,4 @@
-package com.space.licht.envisiondemo.ui.fragment;
+package com.space.licht.envisiondemo.ui.fragment.community;
 
 import android.content.Context;
 import android.os.Handler;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.model.bean.Collection;
+import com.space.licht.envisiondemo.ui.fragment.DensityUtil;
+import com.space.licht.envisiondemo.ui.fragment.Model;
 import com.space.licht.envisiondemo.ui.fragment.classification.BaseSwipListAdapter;
 
 import java.text.DecimalFormat;

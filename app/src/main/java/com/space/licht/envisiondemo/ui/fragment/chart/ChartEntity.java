@@ -1,4 +1,4 @@
-package com.space.licht.envisiondemo.ui.fragment;
+package com.space.licht.envisiondemo.ui.fragment.chart;
 
 /**
  * 作者：chs on 2016/9/6 15:14

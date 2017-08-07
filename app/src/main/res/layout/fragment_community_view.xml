@@ -48,35 +48,35 @@
             android:layout_marginTop="20dp">
 
             <Button
-                android:layout_width="30dp"
-                android:layout_height="18dp"
+                android:layout_width="20dp"
+                android:layout_height="12dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/btn_border_black"/>
 
-            <TextView
+            <com.space.licht.envisiondemo.widget.textview.BoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Allocated"
                 android:textColor="@color/bel_grey_text"
-                android:textSize="20sp"/>
+                android:textSize="16sp"/>
 
             <Button
-                android:layout_width="30dp"
-                android:layout_height="18dp"
+                android:layout_width="20dp"
+                android:layout_height="12dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/btn_border_gray"/>
 
-            <TextView
+            <com.space.licht.envisiondemo.widget.textview.BoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Total Package"
                 android:textColor="@color/bel_grey_text"
-                android:textSize="20sp"/>
+                android:textSize="16sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -86,12 +86,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
+            <com.space.licht.envisiondemo.widget.textview.BoldTextView
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:text="Data"
                 android:textColor="@color/bel_grey_text"/>
 
@@ -119,8 +119,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="35dp"
                         android:text="30G"
+                        android:layout_marginRight="20dp"
                         android:textColor="#666"
                         android:textSize="16sp"/>
                 </RelativeLayout>
@@ -129,7 +129,7 @@
                 <ProgressBar
                     android:id="@+id/pb_progressbar"
                     style="@style/StyleProgressBarMini"
-                    android:layout_width="300dp"
+                    android:layout_width="280dp"
                     android:layout_height="10dp"
 
                     android:layout_marginRight="20dp"
@@ -148,11 +148,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
+            <com.space.licht.envisiondemo.widget.textview.BoldTextView
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
+                android:textSize="16sp"
                 android:text="Voice"
                 android:textColor="@color/bel_grey_text"/>
 
@@ -179,7 +180,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="35dp"
+                        android:layout_marginRight="20dp"
                         android:text="75Hours"
                         android:textColor="#666"
                         android:textSize="16sp"/>
@@ -189,7 +190,7 @@
                 <ProgressBar
                     android:id="@+id/pb_progressbar_voice"
                     style="@style/StyleProgressBarMini2"
-                    android:layout_width="300dp"
+                    android:layout_width="280dp"
                     android:layout_height="10dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/btn_border_green"

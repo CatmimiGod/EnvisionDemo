@@ -13,7 +13,7 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.base.BaseActivity;
 import com.space.licht.envisiondemo.model.db.RealmHelper;
-import com.space.licht.envisiondemo.ui.fragment.classification.SGAdapter;
+import com.space.licht.envisiondemo.ui.fragment.member.SGAdapter;
 
 import java.util.List;
 

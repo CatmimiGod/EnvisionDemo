@@ -1,4 +1,4 @@
-package com.space.licht.envisiondemo.ui.fragment;
+package com.space.licht.envisiondemo.ui.fragment.video;
 
 
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.ui.fragment.Product;
+import com.space.licht.envisiondemo.ui.fragment.Store;
+import com.space.licht.envisiondemo.ui.fragment.StoreAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.space.licht.envisiondemo.ui.fragment.classification;
+package com.space.licht.envisiondemo.ui.fragment.member;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
@@ -41,7 +42,9 @@ public class ProcessAdp extends BaseAdapter {
             holder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(
                     R.layout.item_order_process, null);
-            holder.tv_time = (TextView) convertView.findViewById(R.id.tv_time);
+            holder.tv_tel = (TextView) convertView.findViewById(R.id.member_tel_number);
+            holder.tv_time = (TextView) convertView.findViewById(R.id.member_time_date);
+            holder.iv_icon = (ImageView) convertView.findViewById(R.id.member_process_iv);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -52,5 +55,7 @@ public class ProcessAdp extends BaseAdapter {
 
     public static class ViewHolder {
         TextView tv_time;
+        TextView tv_tel;
+        ImageView iv_icon;
     }
 }

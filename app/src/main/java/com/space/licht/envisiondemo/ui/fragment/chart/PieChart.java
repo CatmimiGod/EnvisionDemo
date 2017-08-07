@@ -1,4 +1,4 @@
-package com.space.licht.envisiondemo.ui.fragment;
+package com.space.licht.envisiondemo.ui.fragment.chart;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,13 +6,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.space.licht.envisiondemo.app.App;
 import com.space.licht.envisiondemo.model.bean.Collection;
+import com.space.licht.envisiondemo.ui.fragment.CalculateUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -104,9 +105,9 @@ public class PieChart extends View {
         mTextPaint = new Paint();
         mTextPaint.setAntiAlias(true);
         mTextPaint.setStyle(Paint.Style.FILL);
-        Typeface tf = Typeface.createFromAsset(context.getAssets(),
-                "fonts/PINGFANG REGULAR_0.TTF");
-        mTextPaint.setTypeface(tf);
+
+        mTextPaint.setTypeface(App.mRegularTf);
+        mTextPaint.setColor(0xff999999);
         mTextPaint.setTextSize(40);
 
 
@@ -114,9 +115,8 @@ public class PieChart extends View {
         mBluePaint.setAntiAlias(true);
         mBluePaint.setStyle(Paint.Style.FILL);
         mBluePaint.setTextSize(52);
-        Typeface tf2 = Typeface.createFromAsset(context.getAssets(),
-                "fonts/PINGFANG MEDIUM_0.TTF");
-        mTextPaint.setTypeface(tf2);
+
+        mBluePaint.setTypeface(App.mMediumTf);
         mBluePaint.setColor(0xff00a2ff);
 
         mPath = new Path();

@@ -1,9 +1,10 @@
 package com.space.licht.envisiondemo.widget.textview;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
+import com.space.licht.envisiondemo.app.App;
 
 
 public class MediumTextView extends TextView {
@@ -24,9 +25,8 @@ public class MediumTextView extends TextView {
     }
 
     private void style(Context context) {
-        Typeface tf = Typeface.createFromAsset(context.getAssets(),
-                "fonts/PINGFANG MEDIUM_0.TTF");
-        setTypeface(tf);
+
+        setTypeface(App.mMediumTf);
     }
 
 }

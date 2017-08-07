@@ -9,11 +9,11 @@
     <color name="black_translucent">#50000000</color>
     <color name="dark_green">#0aa485</color>
     <color name="blue_green">#45444d</color>
-    <color name="gray_light">#c4c3c9</color>
+    <color name="gray_light">#999999</color>
     <color name="gray">#e4e3e9</color>
     <color name="dark_red">#b70000</color>
     <color name="dark_black">#000000</color>
-    <color name="gray_bg">#f1ecec</color>
+    <color name="gray_bg">#FFF5F5F5</color>
 
     <array name="colors">
         <item>@color/colorBluePrimary</item>
@@ -127,4 +127,6 @@
     <color name="colorBlueGreyPrimaryDark">#455A64</color>
     <color name="colorBlueGreyAccent">#FF4081</color>
     <color name="colorBlueGreyPrimaryCenter">#27373e</color>
+    <color name="gray_text">#666666</color>
+    <color name="paint_color">#c8c8c8</color>
 </resources>

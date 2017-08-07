@@ -16,7 +16,7 @@ import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.base.BaseActivity;
 import com.space.licht.envisiondemo.model.bean.Collection;
 import com.space.licht.envisiondemo.model.db.RealmHelper;
-import com.space.licht.envisiondemo.ui.fragment.classification.SGAdapter;
+import com.space.licht.envisiondemo.ui.fragment.member.SGAdapter;
 import com.space.licht.envisiondemo.utils.JumpUtil;
 
 import java.util.List;

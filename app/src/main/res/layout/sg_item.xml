@@ -15,6 +15,7 @@
             android:id="@+id/iv_sghead"
             android:background="@drawable/voice_icon_noselect"
             android:padding="6dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="60dp"
             android:layout_height="60dp"
             />
@@ -42,25 +43,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 />
         </LinearLayout>
-
-        <TextView
-            android:textColor="@color/dark_black"
+        <LinearLayout
+            android:id="@+id/recents_calls_ll"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="recents calls"/>
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <TextView
+                android:textColor="@color/dark_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="recents calls"/>
 
-        <ImageView
-            android:id="@+id/sgadpter_iv"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="10dp"
-            android:src="@drawable/icon_arrow_right"/>
+            <ImageView
+                android:id="@+id/sgadpter_iv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:src="@drawable/icon_arrow_right"/>
+        </LinearLayout>
     </LinearLayout>
-
+    <ImageView
+        android:background="@color/paint_color"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
     <LinearLayout
         android:id="@+id/ll_start_inform_aviation_content"
         android:layout_width="match_parent"
@@ -68,14 +77,13 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@color/gray_bg"
-        android:orientation="vertical"
-         >
-        <TextView
+        android:orientation="vertical">
+        <com.space.licht.envisiondemo.widget.textview.BoldTextView
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="25dp"
             android:text="Recent calls"
-            android:textSize="18dp"
+            android:textSize="13dp"
             android:textColor="@color/dark_black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -88,6 +96,9 @@
             android:background="@null"
             >
         </com.space.licht.envisiondemo.widget.InnerListview>
+        
+
+
 
     </LinearLayout>
 

@@ -1,4 +1,4 @@
-package com.space.licht.envisiondemo.ui.fragment;
+package com.space.licht.envisiondemo.ui.fragment.community;
 
 
 import android.os.Bundle;
@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.model.bean.Collection;
 import com.space.licht.envisiondemo.model.db.RealmHelper;
+import com.space.licht.envisiondemo.ui.fragment.DensityUtil;
+import com.space.licht.envisiondemo.ui.fragment.Model;
 
 import java.util.List;
 

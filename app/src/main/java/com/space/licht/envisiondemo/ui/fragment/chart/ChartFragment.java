@@ -1,4 +1,4 @@
-package com.space.licht.envisiondemo.ui.fragment;
+package com.space.licht.envisiondemo.ui.fragment.chart;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,7 +12,6 @@ import android.widget.ImageView;
 
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.base.BaseFragment;
-import com.space.licht.envisiondemo.ui.fragment.discover.DataFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

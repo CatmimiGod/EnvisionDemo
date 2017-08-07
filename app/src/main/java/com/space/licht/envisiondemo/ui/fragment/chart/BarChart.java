@@ -1,4 +1,4 @@
-package com.space.licht.envisiondemo.ui.fragment;
+package com.space.licht.envisiondemo.ui.fragment.chart;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -12,12 +12,13 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.space.licht.envisiondemo.app.App;
 import com.space.licht.envisiondemo.model.bean.Collection;
+import com.space.licht.envisiondemo.ui.fragment.CalculateUtil;
+import com.space.licht.envisiondemo.ui.fragment.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * 作者：chs on 2016/9/8 09:46
@@ -49,7 +50,7 @@ public class BarChart extends View {
     /**
      * 画笔 背景，轴 ，线 ，text ,点
      */
-    private Paint bgPaint, axisPaint, textPaint, barPaint, borderPaint;
+    private Paint bgPaint, axisPaint, textPaint, barPaint, borderPaint, text2Paint;
     /**
      * 上下左右的白色部分
      */
@@ -145,12 +146,18 @@ public class BarChart extends View {
         bgPaint = new Paint();
         bgPaint.setColor(Color.WHITE);
 
+        text2Paint = new Paint();
+        text2Paint.setColor(0xff666666);
+        text2Paint.setTypeface(App.mRegularTf);
+        text2Paint.setTextSize(30);
+
         axisPaint = new Paint();
         axisPaint.setStrokeWidth(DensityUtil.dip2px(context, 1));
 
         textPaint = new Paint();
         textPaint.setAntiAlias(true);
         textPaint.setTextSize(DensityUtil.dip2px(getContext(), 10));
+        textPaint.setTypeface(App.mRegularTf);
 
         barPaint = new Paint();
         barPaint.setColor(Color.parseColor("#6FC5F4"));
@@ -184,8 +191,8 @@ public class BarChart extends View {
         paintTop = topMargin * 2;
         paintBottom = mTotalHeight - topMargin / 2;
         maxHeight = paintBottom - paintTop;
-        yStartIndex = mTotalHeight - topMargin / 2;
-        ;
+//        maxHeight = paintBottom;
+        yStartIndex = mTotalHeight - topMargin / 2 - text2Paint.getTextSize();
     }
 
     @Override
@@ -213,11 +220,19 @@ public class BarChart extends View {
         //绘制矩形柱子
         drawBars(canvas);
         //画左边的Y轴
-        canvas.drawLine(xStartIndex, yStartIndex, xStartIndex, topMargin / 2 + 80, axisPaint);
+        canvas.drawLine(xStartIndex, yStartIndex, xStartIndex, topMargin / 2, axisPaint);
 
         drawLeftYAxis(canvas);
         //画X轴 下面的
         canvas.drawLine(xStartIndex, yStartIndex, mTotalWidth - leftMargin * 2, yStartIndex, axisPaint);
+
+//        RectF rect  = new RectF();
+//        rect.left = (int) xStartIndex;
+//        rect.top = (int)yStartIndex-20;
+//        rect.right = (int) (xStartIndex+20);
+//        rect.bottom = (int) yStartIndex;
+//
+//        canvas.drawCircle( (int) (xStartIndex+20),(int)yStartIndex-20,20, axisPaint);
         //画X轴的text
         drawXAxisText(canvas);
         //画指示器
@@ -225,26 +240,26 @@ public class BarChart extends View {
     }
 
     private void drawText(Canvas canvas) {
-        canvas.drawText("Remain",mBarLeftXPoints.get(4)+20,120,textPaint);
-        canvas.drawText("Total",mBarLeftXPoints.get(4)+20,160,textPaint);
+        canvas.drawText("Remain", mBarLeftXPoints.get(mData.size() - 2) + 20, 120, text2Paint);
+        canvas.drawText("Total", mBarLeftXPoints.get(mData.size() - 2) + 20, 160, text2Paint);
         // 绘制这个三角形,你可以绘制任意多边形
         Path path = new Path();
-        path.moveTo(mBarLeftXPoints.get(4), 100);// 此点为多边形的起点
-        path.lineTo(mBarLeftXPoints.get(4)+20, 100);
-        path.lineTo(mBarLeftXPoints.get(4)+20, 120);
-        path.lineTo(mBarLeftXPoints.get(4), 120);
+        path.moveTo(mBarLeftXPoints.get(mData.size() - 2), 100);// 此点为多边形的起点
+        path.lineTo(mBarLeftXPoints.get(mData.size() - 2) + 20, 100);
+        path.lineTo(mBarLeftXPoints.get(mData.size() - 2) + 20, 120);
+        path.lineTo(mBarLeftXPoints.get(mData.size() - 2), 120);
         path.close(); // 使这些点构成封闭的多边形
         textPaint.setColor(0xfffc8458);
-        canvas.drawPath(path,textPaint);
+        canvas.drawPath(path, textPaint);
 
         Path path2 = new Path();
         path2.moveTo(mBarLeftXPoints.get(4), 140);// 此点为多边形的起点
-        path2.lineTo(mBarLeftXPoints.get(4)+20, 140);
-        path2.lineTo(mBarLeftXPoints.get(4)+20, 160);
+        path2.lineTo(mBarLeftXPoints.get(4) + 20, 140);
+        path2.lineTo(mBarLeftXPoints.get(4) + 20, 160);
         path2.lineTo(mBarLeftXPoints.get(4), 160);
         path2.close(); // 使这些点构成封闭的多边形
         textPaint.setColor(0xfffee6de);
-        canvas.drawPath(path2,textPaint);
+        canvas.drawPath(path2, textPaint);
 
 
     }
@@ -258,29 +273,31 @@ public class BarChart extends View {
     private void drawBars(Canvas canvas) {
         mBarLeftXPoints.clear();
         mBarRightXPoints.clear();
-        mBarRect.bottom = mTotalHeight - topMargin / 2;
+        mBarRect.bottom = (int) (mTotalHeight - topMargin / 2 - text2Paint.getTextSize());
         Log.i("StartIndex", "xStartIndex" + xStartIndex + "barWidth:" + barWidth + "barSpace" + barSpace + "leftMoving" + leftMoving);
+
         for (int i = 0; i < mData.size(); i++) {
-            mBarRect.left = (int) (xStartIndex + barWidth * i + barSpace * (i + 1) - leftMoving)-20;
-            mBarRect.top = (int) maxHeight + topMargin * 2 - (int) ((maxHeight * (mData.get(i).getVoiceUsed()) / maxDivisionValue));
-            mBarRect.right = mBarRect.left + barWidth - 30;
-            mBarLeftXPoints.add(mBarRect.left);
-            mBarRightXPoints.add(mBarRect.right);
-            barPaint.setColor(mData.get(i).getUsedColor());
-            Log.e(TAG, "drawBars: " + mBarRect.bottom);
-            canvas.drawRect(mBarRect, barPaint);
+            if (!"Unused".equals(mData.get(i).getNamed())) {
+                mBarRect.left = (int) (xStartIndex + barWidth * (i - 1) + barSpace * (i) - leftMoving);
+                mBarRect.top = (int) yStartIndex - (int) ((maxHeight * (mData.get(i).getVoiceUsed()) / maxDivisionValue));
+                mBarRect.right = mBarRect.left + barWidth - 10;
+                mBarLeftXPoints.add(mBarRect.left);
+                mBarRightXPoints.add(mBarRect.right);
+                barPaint.setColor(mData.get(i).getUsedColor());
+                canvas.drawRect(mBarRect, barPaint);
 
 
-            Rect mBarRects = new Rect();
-            mBarRects.bottom = mBarRect.top;
-            mBarRects.top = (int)(mBarRect.top - maxHeight * ((mData.get(i).getVoice()*45 - mData.get(i).getVoiceUsed()) / 1400f));
-            mBarRects.left = mBarRect.left;
-            mBarRects.right = mBarRect.right;
-            barPaint.setColor(mData.get(i).getTotalColor());
-            canvas.drawRect(mBarRects, barPaint);
+                Rect mBarRects = new Rect();
+                mBarRects.bottom = mBarRect.top;
+                mBarRects.top = (int) (mBarRect.top - maxHeight * ((mData.get(i).getVoice() * 45 - mData.get(i).getVoiceUsed()) / 1400f));
+                mBarRects.left = mBarRect.left;
+                mBarRects.right = mBarRect.right;
+                barPaint.setColor(mData.get(i).getTotalColor());
+                canvas.drawRect(mBarRects, barPaint);
 
-            canvas.drawText("" + mData.get(i).getVoiceUsed(), mBarRect.left, mBarRect.top + 25, textPaint);
-            canvas.drawText("" + mData.get(i).getVoice()*45, mBarRect.left, mBarRects.top, textPaint);
+                canvas.drawText("" + mData.get(i).getVoiceUsed(), mBarRect.left, mBarRect.top + 25, text2Paint);
+                canvas.drawText("" + mData.get(i).getVoice() * 45, mBarRect.left, mBarRects.top, text2Paint);
+            }
         }
 
     }
@@ -314,7 +331,7 @@ public class BarChart extends View {
         float unScaleValue = (float) (maxValueInItems / Math.pow(10, scale));//最大值除以位数之后剩下的值  比如1200/1000 后剩下1.2
 
         maxDivisionValue = (float) (CalculateUtil.getRangeTop(unScaleValue) * Math.pow(10, scale));//获取Y轴的最大的分度值
-        xStartIndex = CalculateUtil.getDivisionTextMaxWidth(maxDivisionValue, mContext) + 20;
+        xStartIndex = CalculateUtil.getDivisionTextMaxWidth(maxDivisionValue, mContext) + 25;
     }
 
     /**
@@ -325,19 +342,16 @@ public class BarChart extends View {
      * @param canvas
      */
     private void drawLeftYAxis(Canvas canvas) {
-        float eachHeight = ((yStartIndex-topMargin / 2 - 80) / 4f);
-
-
+        float eachHeight = ((yStartIndex - topMargin / 2) / 7f);
         for (int i = 0; i <= 4; i++) {
-            float startY = paintBottom - eachHeight * i;
+            float startY = paintBottom - 2 * eachHeight * i - eachHeight;
             if (startY < topMargin / 2) {
                 break;
             }
-            int[] arr = {0, 200, 600, 1000, 1400};
-            String text = "" + arr[i];
-            canvas.drawText(text, xStartIndex - textPaint.measureText(text) - 5, startY + textPaint.measureText("0"), textPaint);
+            String[] arr = {"", "200", "600", "1000", "1400"};
+            String text = arr[i];
+            canvas.drawText(text, xStartIndex - textPaint.measureText(text) - 15, startY + textPaint.measureText("0"), text2Paint);
         }
-
     }
 
     /**
@@ -345,8 +359,6 @@ public class BarChart extends View {
      *
      * @param canvas
      */
-
-
     private void drawXAxisText(Canvas canvas) {
         String[] arr = {"Father", "Wife", "Son", "Daughter", "Ipad"};
 
@@ -354,7 +366,7 @@ public class BarChart extends View {
         for (int i = 0; i < 5; i++) {
             distance = xStartIndex + barWidth * i + barSpace * (i + 1) - leftMoving;
             String text = arr[i];
-            canvas.drawText(text, mBarLeftXPoints.get(i) - (textPaint.measureText(text) - barWidth) / 2 - 20, paintBottom + DensityUtil.dip2px(getContext(), 10), textPaint);
+            canvas.drawText(text, mBarLeftXPoints.get(i) - (textPaint.measureText(text) - barWidth) / 2 - 20, paintBottom + DensityUtil.dip2px(getContext(), 10), text2Paint);
         }
     }
 
@@ -362,6 +374,4 @@ public class BarChart extends View {
     public boolean onTouchEvent(MotionEvent event) {
         return true;
     }
-
-
 }

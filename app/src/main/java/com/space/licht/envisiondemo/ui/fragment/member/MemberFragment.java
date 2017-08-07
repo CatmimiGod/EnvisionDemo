@@ -1,4 +1,4 @@
-package com.space.licht.envisiondemo.ui.fragment.classification;
+package com.space.licht.envisiondemo.ui.fragment.member;
 
 
 import android.graphics.Color;
@@ -105,83 +105,78 @@ public class MemberFragment extends Fragment {
      */
     private void initDataI() {
 //初始化假数据
-//        Collection bean = new Collection();
-//        bean.setNamed("Mother");
-//        bean.setHeadImg(R.drawable.mother);
-//        bean.setTel("628-458-5869");
-//        bean.setVoice(20);
-//        bean.setDataTime(20);
+
+//        Collection bean6 = new Collection();
+//        bean6.setNamed("Unused");
+//        bean6.setVoice(24);
+//        bean6.setDataTime(28);
+//        bean6.setUsedColor(0xff00a2ff);
+//        RealmHelper.getInstance().insertCollection(bean6);
 //
-//        bean.setTotalColor(0xfffeefdf);
-//        bean.setUsedColor(0xfffcad5d);
-//        bean.setDataUsed(580);
-//        bean.setVoiceUsed(420);
 //
-//        RealmHelper.getInstance().insertCollection(bean);
-//        Collection bean2 = new Collection();
-//        bean2.setNamed("Father");
-//        bean2.setHeadImg(R.drawable.father);
-//        bean2.setTel("628-458-5876");
-//        bean2.setVoice(20);
-//        bean2.setDataTime(20);
+//        Collection bean5 = new Collection();
+//        bean5.setNamed("ipad");
+//        bean5.setHeadImg(R.drawable.ipad);
+//        bean5.setTel("628-458-5869");
+//        bean5.setVoice(8);
+//        bean5.setDataTime(13);
 //
-//        bean2.setTotalColor(0xfffee6de);
-//        bean2.setUsedColor(0xFFFA8358);
-//        bean2.setDataUsed(600);
-//        bean2.setVoiceUsed(800);
+//        bean5.setTotalColor(0xfff2f7dd);
+//        bean5.setUsedColor(0xFFBDD757);
+//        bean5.setDataUsed(420);
+//        bean5.setVoiceUsed(200);
+//        RealmHelper.getInstance().insertCollection(bean5);
 //
-//        RealmHelper.getInstance().insertCollection(bean2);
+//
+//        Collection bean4 = new Collection();
+//        bean4.setNamed("Daughter");
+//        bean4.setHeadImg(R.drawable.daughter);
+//        bean4.setTel("628-458-2896");
+//        bean4.setVoice(12);
+//        bean4.setDataTime(13);
+//        bean4.setTotalColor(0xfffcf9de);
+//        bean4.setUsedColor(0xFFF1E15A);
+//        bean4.setDataUsed(380);
+//        bean4.setVoiceUsed(220);
+//        RealmHelper.getInstance().insertCollection(bean4);
+//
 //        Collection bean3 = new Collection();
 //        bean3.setNamed("Son");
 //        bean3.setHeadImg(R.drawable.son);
 //        bean3.setTel("628-458-4826");
 //        bean3.setVoice(10);
 //        bean3.setDataTime(10);
-//
 //        bean3.setTotalColor(0xfffff6de);
 //        bean3.setUsedColor(0xFFFBD05A);
 //        bean3.setDataUsed(610);
-//        bean3.setVoiceUsed(610);
-//
+//        bean3.setVoiceUsed(200);
 //        RealmHelper.getInstance().insertCollection(bean3);
-//        Collection bean4 = new Collection();
-//        bean4.setNamed("Daughter");
-//        bean4.setHeadImg(R.drawable.daughter);
-//        bean4.setTel("628-458-2896");
-//        bean4.setVoice(10);
 //
-//        bean4.setDataTime(10);
-//        bean4.setTotalColor(0xfffcf9de);
-//        bean4.setUsedColor(0xFFF1E15A);
-//        bean4.setDataUsed(380);
-//        bean4.setVoiceUsed(420);
+//        Collection bean = new Collection();
+//        bean.setNamed("Mother");
+//        bean.setHeadImg(R.drawable.mother);
+//        bean.setTel("628-458-5869");
+//        bean.setVoice(16);
+//        bean.setDataTime(16);
 //
-//
-//        RealmHelper.getInstance().insertCollection(bean4);
-//        Collection bean5 = new Collection();
-//        bean5.setNamed("ipad");
-//        bean5.setHeadImg(R.drawable.ipad);
-//        bean5.setTel("628-458-5869");
-//        bean5.setVoice(12);
-//        bean5.setDataTime(12);
-//
-//        bean5.setTotalColor(0xfff2f7dd);
-//        bean5.setUsedColor(0xFFBDD757);
-//        bean5.setDataUsed(420);
-//        bean5.setVoiceUsed(420);
+//        bean.setTotalColor(0xfffeefdf);
+//        bean.setUsedColor(0xfffcad5d);
+//        bean.setDataUsed(380);
+//        bean.setVoiceUsed(420);
+//        RealmHelper.getInstance().insertCollection(bean);
 //
 //
-//        RealmHelper.getInstance().insertCollection(bean5);
-//        Collection bean6 = new Collection();
-//        bean6.setNamed("Unused");
-//        bean6.setVoice(28);
-//        bean6.setDataTime(28);
-//        bean6.setUsedColor(0xff00a2ff);
-//        bean6.setDataUsed(420);
-//        bean6.setVoiceUsed(420);
-//
-//
-//        RealmHelper.getInstance().insertCollection(bean6);
+//        Collection bean2 = new Collection();
+//        bean2.setNamed("Father");
+//        bean2.setHeadImg(R.drawable.father);
+//        bean2.setTel("628-458-5876");
+//        bean2.setVoice(20);
+//        bean2.setDataTime(20);
+//        bean2.setTotalColor(0xfffee6de);
+//        bean2.setUsedColor(0xFFFA8358);
+//        bean2.setDataUsed(400);
+//        bean2.setVoiceUsed(700);
+//        RealmHelper.getInstance().insertCollection(bean2);
 
         mSGDatas = RealmHelper.getInstance().getCollectionList();
     }

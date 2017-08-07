@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.space.licht.envisiondemo.di.module.FragmentModule;
 import com.space.licht.envisiondemo.di.scope.FragmentScope;
-import com.space.licht.envisiondemo.ui.fragment.classification.MemberFragment;
+import com.space.licht.envisiondemo.ui.fragment.member.MemberFragment;
 import com.space.licht.envisiondemo.ui.fragment.discover.DiscoverFragment;
 
 import dagger.Component;

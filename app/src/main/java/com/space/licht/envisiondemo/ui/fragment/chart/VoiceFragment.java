@@ -1,4 +1,4 @@
-package com.space.licht.envisiondemo.ui.fragment;
+package com.space.licht.envisiondemo.ui.fragment.chart;
 
 import android.os.Bundle;
 import android.support.v7.widget.CardView;

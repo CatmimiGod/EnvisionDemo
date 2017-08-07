@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.ui.activitys.MainActivity;
-import com.space.licht.envisiondemo.ui.fragment.VoiceFragment;
+import com.space.licht.envisiondemo.ui.fragment.chart.VoiceFragment;
 import com.space.licht.envisiondemo.utils.KL;
 import com.space.licht.envisiondemo.utils.ScreenUtil;
 import com.space.licht.envisiondemo.widget.theme.ColorRelativeLayout;

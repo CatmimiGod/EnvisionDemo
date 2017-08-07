@@ -1,4 +1,4 @@
-package com.space.licht.envisiondemo.ui.fragment;
+package com.space.licht.envisiondemo.ui.fragment.setting;
 
 import android.content.Context;
 import android.view.LayoutInflater;

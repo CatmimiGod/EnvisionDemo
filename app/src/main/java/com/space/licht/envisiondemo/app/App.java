@@ -3,6 +3,7 @@ package com.space.licht.envisiondemo.app;
 
 import android.app.Activity;
 import android.app.Application;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.space.licht.envisiondemo.di.component.AppComponent;
@@ -22,6 +23,10 @@ import io.realm.Realm;
 public class App extends Application {
     private static App instance;
     private Set<Activity> allActivities;
+    public static Typeface mRegularTf;
+    public static Typeface mBoldTf;
+    public static Typeface mMediumTf;
+//    public static Typeface mAKRegularTf;
 
     public static App getInstance() {
         return instance;
@@ -38,6 +43,14 @@ public class App extends Application {
         super.onCreate();
         instance = this;
         Realm.init(getApplicationContext());
+        initFonts();
+    }
+
+    private void initFonts() {
+        mRegularTf = Typeface.createFromAsset(getAssets(), "fonts/PINGFANG REGULAR_0.TTF");
+        mMediumTf = Typeface.createFromAsset(getAssets(), "fonts/PINGFANG MEDIUM_0.TTF");
+        mBoldTf = Typeface.createFromAsset(getAssets(), "fonts/pingfang_bold_0.ttf");
+//        mAKRegularTf = Typeface.createFromAsset(getAssets(), "AkkuratPro-Regular.otf");
     }
 
     public void registerActivity(Activity act) {

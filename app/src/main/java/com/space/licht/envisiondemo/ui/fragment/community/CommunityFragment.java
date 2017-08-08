@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.app.App;
 import com.space.licht.envisiondemo.model.bean.Collection;
-import com.space.licht.envisiondemo.ui.activitys.PlayVideoActivity;
+import com.space.licht.envisiondemo.ui.activitys.ShareVideoActivity;
 import com.space.licht.envisiondemo.ui.fragment.DensityUtil;
 import com.space.licht.envisiondemo.ui.fragment.Model;
 import com.space.licht.envisiondemo.utils.JumpUtil;
@@ -172,14 +172,16 @@ public class CommunityFragment extends Fragment {
     public void onClick() {
         if (isgone){
             isgone = false;
+            mPackageAllocation.setText("Done");
         }else{
             isgone = true;
+            mPackageAllocation.setText("Allocation");
         }
 
         mCommunityAdapter.setIsgone(isgone);
         mCommunityAdapter.notifyDataSetChanged();
         if (isgone){
-            JumpUtil.jump(getContext(),PlayVideoActivity.class);
+            JumpUtil.jump(getContext(),ShareVideoActivity.class);
         }
     }
 }

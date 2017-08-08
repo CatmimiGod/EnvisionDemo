@@ -50,7 +50,7 @@
         <activity android:name=".ui.activitys.AddWhiteListActivity"/>
         <activity android:name=".ui.activitys.BlackListActivity"/>
         <activity android:name=".ui.activitys.BlockCellularDataActivity"/>
-        <activity android:name=".ui.activitys.PlayVideoActivity"/>
+        <activity android:name=".ui.activitys.CallContrlVideoActivity"/>
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data

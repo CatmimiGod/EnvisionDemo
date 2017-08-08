@@ -12,6 +12,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.space.licht.envisiondemo.app.App;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -28,7 +30,7 @@ public class PickerView extends View {
     /**
      * text之间间距和minTextSize之比
      */
-    public static final float MARGIN_ALPHA = 2.8f;
+    public static final float MARGIN_ALPHA = 6f;
     /**
      * 自动回滚到中间的速度
      */
@@ -41,13 +43,13 @@ public class PickerView extends View {
     private int mCurrentSelected;
     private Paint mPaint;
 
-    private float mMaxTextSize = 60;
+    private float mMaxTextSize = 40;
     private float mMinTextSize = 30;
 
     private float mMaxTextAlpha = 255;
     private float mMinTextAlpha = 120;
 
-    private int mColorText = 0xbbbb;
+    private int mColorText = 0xffffff;
 
     private int mViewHeight;
     private int mViewWidth;
@@ -158,8 +160,8 @@ public class PickerView extends View {
         mViewHeight = getMeasuredHeight();
         mViewWidth = getMeasuredWidth();
         // 按照View的高度计算字体大小
-        mMaxTextSize = mViewHeight / 8.0f;
-        mMinTextSize = mMaxTextSize / 2f;
+        mMaxTextSize = mViewHeight / 10.0f;
+        mMinTextSize = mMaxTextSize / 3f;
         isInit = true;
         invalidate();
     }
@@ -167,10 +169,11 @@ public class PickerView extends View {
     private void init() {
         timer = new Timer();
         mDataList = new ArrayList<String>();
-        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaint = new Paint();
         mPaint.setStyle(Style.FILL);
         mPaint.setTextAlign(Align.CENTER);
         mPaint.setColor(mColorText);
+        mPaint.setTypeface(App.mRegularTf);
     }
 
     @Override

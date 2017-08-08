@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:minHeight="55dip"
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp"
@@ -9,8 +9,8 @@
 
     <CheckBox
         android:id="@+id/cb_select"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:background="@drawable/voice_icon_select"
@@ -28,13 +28,13 @@
         android:layout_toRightOf="@+id/cb_select"
         android:src="@drawable/daughter"/>
 
-    <TextView
+    <com.space.licht.envisiondemo.widget.textview.RegularTextView
         android:id="@+id/tv_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:textSize="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="16dp"
         android:layout_toRightOf="@+id/video_iv"
         android:text="Mother"
         android:textColor="@android:color/black"/>
@@ -43,7 +43,7 @@
     <ImageView
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_below="@+id/video_iv"
         android:background="@color/gray_light"/>
 

@@ -11,6 +11,7 @@
         android:background="@color/colorBluePrimary">
 
         <TextView
+            android:id="@+id/activity_edit_cancel"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
@@ -28,7 +29,7 @@
             android:textSize="20sp"/>
 
         <TextView
-            android:id="@+id/activity_call_out_edit"
+            android:id="@+id/activity_edit_save"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -127,20 +128,20 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
-            android:layout_weight="2"/>
+            android:layout_weight="5"/>
 
         <com.space.licht.envisiondemo.widget.PickerView
             android:id="@+id/activity_edit_pickerview_hour"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             />
 
         <com.space.licht.envisiondemo.widget.PickerView
             android:id="@+id/activity_edit_pickerview_min"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             />
 
         <com.space.licht.envisiondemo.widget.PickerView
@@ -148,7 +149,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginRight="10dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             />
     </LinearLayout>
 

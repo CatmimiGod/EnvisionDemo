@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
  * 2017/8/3 0003.
  */
 
-public class PlayVideoActivity extends BaseActivity {
+public class CallContrlVideoActivity extends BaseActivity {
     @BindView(R.id.activity_play_video)
     FullVideoView mActivityPlayVideo;
 

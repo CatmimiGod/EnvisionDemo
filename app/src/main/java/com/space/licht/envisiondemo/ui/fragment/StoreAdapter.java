@@ -21,17 +21,15 @@ public class StoreAdapter extends BaseAdapter {
     private final LinkedList<Boolean> selected = new LinkedList<Boolean>();
 
     private LayoutInflater inflater;
-    private List<Store> list;
     List<ProductAdapter> pAdapterList = new ArrayList<ProductAdapter>();
     Context context;
 
     public StoreAdapter(Context context, List<Store> list) {
         this.inflater = LayoutInflater.from(context);
-        this.list = list;
         this.context = context;
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < 5; i++) {
             getSelect().add(false);
-            ProductAdapter pAdapter = new ProductAdapter(context, list.get(i).getProducts(),
+            ProductAdapter pAdapter = new ProductAdapter(context,
                     this, i);
             pAdapterList.add(pAdapter);
         }
@@ -67,7 +65,6 @@ public class StoreAdapter extends BaseAdapter {
 
         holder.lv_product.setAdapter(pAdapterList.get(position));
 
-        final Store store = list.get(position);
 
         holder.tv_content.setText("Select all");
 
@@ -91,12 +88,12 @@ public class StoreAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return list.size();
+        return 5;
     }
 
     @Override
     public Object getItem(int position) {
-        return list.get(position);
+        return position;
     }
 
     @Override

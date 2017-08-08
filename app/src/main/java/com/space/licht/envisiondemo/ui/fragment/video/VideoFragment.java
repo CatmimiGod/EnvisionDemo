@@ -8,18 +8,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.space.licht.envisiondemo.R;
-import com.space.licht.envisiondemo.ui.fragment.Product;
+import com.space.licht.envisiondemo.ui.activitys.ChartVideoActivity;
 import com.space.licht.envisiondemo.ui.fragment.Store;
 import com.space.licht.envisiondemo.ui.fragment.StoreAdapter;
+import com.space.licht.envisiondemo.utils.JumpUtil;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.space.licht.envisiondemo.R.id.lv_store;
 
@@ -32,6 +34,8 @@ public class VideoFragment extends Fragment implements AdapterView.OnItemClickLi
     private static final String TAG = "VideoFragment";
     @BindView(lv_store)
     ListView mLvStore;
+    @BindView(R.id.video_fragment_btn)
+    Button mVideoFragmentBtn;
     private ArrayList<Store> mList;
     private StoreAdapter mAdapter;
 
@@ -46,34 +50,9 @@ public class VideoFragment extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initDataI();
         initViewI();
-
     }
 
-    /**
-     * 初始化数据
-     */
-    private void initDataI() {
-        mList = new ArrayList<Store>();
-        Store store = new Store();
-        store.setId(0);
-        store.setName("店铺" + 0);
-
-        List<Product> plist = new ArrayList<Product>();
-
-        for (int j = 0; j < 5; j++) {
-            Product info = new Product();
-            info.setId(j);
-            info.setPrice(j + 1);
-            info.setContent("店铺中的商品" + 12 + j);
-            info.setQuantity(1);
-            plist.add(info);
-        }
-        store.setProducts(plist);
-
-        mList.add(store);
-    }
 
     /**
      * 初始化控件
@@ -89,5 +68,10 @@ public class VideoFragment extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+    }
+
+    @OnClick(R.id.video_fragment_btn)
+    public void onClick() {
+        JumpUtil.jump(getContext(), ChartVideoActivity.class);
     }
 }

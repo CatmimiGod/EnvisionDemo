@@ -48,7 +48,7 @@ public class AddWhiteListActivity extends BaseActivity {
                 break;
             case R.id.add_member_done:
                 //获取文本数据保存
-                JumpUtil.jump(this,PlayVideoActivity.class);
+                JumpUtil.jump(this,CallContrlVideoActivity.class);
                 finish();
                 break;
             case R.id.add_member_photo:

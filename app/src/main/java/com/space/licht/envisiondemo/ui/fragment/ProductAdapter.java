@@ -19,20 +19,15 @@ public class ProductAdapter extends BaseAdapter {
     private final List<Boolean> selected = new ArrayList<Boolean>();
 
     private LayoutInflater inflater;
-    private List<Product> list;
     StoreAdapter adapter;
     int storePosition;
     Context context;
 
-    public ProductAdapter(Context context, List<Product> list, StoreAdapter adapter, int storePosition) {
+    public ProductAdapter(Context context, StoreAdapter adapter, int storePosition) {
         this.inflater = LayoutInflater.from(context);
-        this.list = list;
         this.adapter = adapter;
         this.storePosition = storePosition;
         this.context = context;
-        for (int j = 0; j < list.size(); j++) {
-            getSelect().add(false);
-        }
     }
 
     public List<Boolean> getSelect() {
@@ -53,11 +48,10 @@ public class ProductAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        final Product product = list.get(position);
         holder.tv_content.setText("Mother");
 
 
-        holder.cb_select.setChecked(selected.get(position));
+        holder.cb_select.setChecked(false);
         holder.cb_select.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -80,12 +74,12 @@ public class ProductAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return list.size();
+        return 5;
     }
 
     @Override
     public Object getItem(int position) {
-        return list.get(position);
+        return position;
     }
 
     @Override

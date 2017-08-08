@@ -12,6 +12,7 @@ import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.base.BaseActivity;
 import com.space.licht.envisiondemo.ui.fragment.CallOutAdapter;
 import com.space.licht.envisiondemo.utils.JumpUtil;
+import com.space.licht.envisiondemo.utils.PreUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,17 @@ public class CallOutActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String time = PreUtils.getString(this, "time", "");
+        if (!time.isEmpty()){
+            String[] split = time.split("-");
+            String ss = split[1] + "~" + split[3];
+            list.add(ss);
+        }
     }
 
     @OnClick({R.id.activity_call_out_back, R.id.activity_call_out_edit, R.id.activity_call_out_add_more})

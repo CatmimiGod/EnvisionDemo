@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.base.BaseActivity;
+import com.space.licht.envisiondemo.utils.JumpUtil;
+import com.space.licht.envisiondemo.utils.PreUtils;
 import com.space.licht.envisiondemo.widget.PickerView;
 
 import java.util.ArrayList;
@@ -40,6 +42,10 @@ public class EditActivity extends BaseActivity {
     TextView mActivityEditToDay;
     @BindView(R.id.activity_edit_to_time)
     TextView mActivityEditToTime;
+    @BindView(R.id.activity_edit_cancel)
+    TextView mActivityEditCancel;
+    @BindView(R.id.activity_edit_save)
+    TextView mActivityEditSave;
     private List<String> mWeek;
     private List<String> mtimeQuantum;
     private List<String> mMonth;
@@ -109,9 +115,9 @@ public class EditActivity extends BaseActivity {
                 time = text;
                 if ("AM".equals(time)) {
                     if (hour > 12)
-                    hour = Integer.parseInt(text)-12;
+                        hour = hour - 12;
                 } else {
-                    hour = Integer.parseInt(text) + 12;
+                    hour = hour + 12;
                 }
 
                 if (isForm) {
@@ -129,7 +135,7 @@ public class EditActivity extends BaseActivity {
         mMonth = new ArrayList<String>();
         mMinute = new ArrayList<String>();
         String[] week = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-        String[] timeQuantum = {"AM", "PM"};
+        String[] timeQuantum = {"PM", "AM"};
         for (int i = 0; i < week.length; i++) {
             mWeek.add(week[i]);
         }
@@ -152,16 +158,32 @@ public class EditActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.activity_edit_from_day, R.id.activity_edit_from_time, R.id.activity_edit_to_day, R.id.activity_edit_to_time})
+    @OnClick({R.id.activity_edit_from_day, R.id.activity_edit_delete, R.id.activity_edit_from_time, R.id.activity_edit_to_day, R.id.activity_edit_to_time, R.id.activity_edit_cancel, R.id.activity_edit_save})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.activity_edit_from_day:
             case R.id.activity_edit_from_time:
+                mActivityEditPickerviewDay.setSelected((String) mActivityEditFromDay.getText());
                 isForm = true;
                 break;
             case R.id.activity_edit_to_day:
             case R.id.activity_edit_to_time:
+                mActivityEditPickerviewDay.setSelected((String) mActivityEditToDay.getText());
                 isForm = false;
+                break;
+
+            case R.id.activity_edit_cancel:
+                finish();
+                break;
+            case R.id.activity_edit_delete:
+                finish();
+                break;
+            case R.id.activity_edit_save:
+                //使用share来模拟
+                String data = mActivityEditFromDay.getText() + "-" + mActivityEditFromTime.getText() + "-" + mActivityEditToDay.getText() + "-" + mActivityEditToTime.getText();
+                PreUtils.putString(this, "time", data);
+                JumpUtil.jump(this,CallContrlVideoActivity.class);
+                finish();
                 break;
         }
     }

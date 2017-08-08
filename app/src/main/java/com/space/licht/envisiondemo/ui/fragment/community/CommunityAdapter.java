@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.model.bean.Collection;
+import com.space.licht.envisiondemo.model.db.RealmHelper;
 import com.space.licht.envisiondemo.ui.fragment.DensityUtil;
 import com.space.licht.envisiondemo.ui.fragment.Model;
 import com.space.licht.envisiondemo.ui.fragment.classification.BaseSwipListAdapter;
@@ -53,7 +54,7 @@ public class CommunityAdapter extends BaseSwipListAdapter {
         mContext = context;
         mDatas = datas;
         mIsgone = isgone;
-        width = DensityUtil.dip2px(mContext, 270);
+        width = DensityUtil.dip2px(mContext, 265);
         mHandler = handler;
     }
 
@@ -89,18 +90,20 @@ public class CommunityAdapter extends BaseSwipListAdapter {
             vh.voiceProportion = (TextView) view.findViewById(R.id.voice_allocation_proportion);
             vh.dataAllocationAmount = (TextView) view.findViewById(R.id.data_allocation_amount);
             vh.voiceAllocationAmount = (TextView) view.findViewById(R.id.voice_allocation_amount);
+            vh.dataPercent = (TextView) view.findViewById(R.id.data_percent);
+            vh.voicePercent = (TextView) view.findViewById(R.id.voice_percent);
             view.setTag(vh);
         } else {
             vh = (ViewHolder) view.getTag();
         }
-        Collection bean = (Collection) getItem(position);
+        final Collection bean = (Collection) getItem(position);
         if (null != bean) {
             vh.name.setText(bean.getNamed());
             vh.tel.setText(bean.getTel());
             vh.mHeadImg.setImageResource(bean.getHeadImg());
-            dataMove(bean.getDataTime(),vh);
+            dataMove(bean.getDataTime(),vh,bean);
             vh.mDataSeekBar.setProgress(bean.getDataTime());
-            voiceMove(bean.getVoice(),vh);
+            voiceMove(bean.getVoice(),vh,bean);
             vh.mVoiceSeekBar.setProgress(bean.getVoice());
         }
 
@@ -114,7 +117,7 @@ public class CommunityAdapter extends BaseSwipListAdapter {
         SeekBar.OnSeekBarChangeListener dataSeekBarListener = new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                dataMove(progress, finalVh);
+                dataMove(progress, finalVh , bean);
             }
 
             @Override
@@ -130,7 +133,7 @@ public class CommunityAdapter extends BaseSwipListAdapter {
         SeekBar.OnSeekBarChangeListener voiceSeekBarListener = new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                voiceMove(progress,finalVh);
+                voiceMove(progress,finalVh,bean);
             }
 
             @Override
@@ -148,7 +151,7 @@ public class CommunityAdapter extends BaseSwipListAdapter {
         return view;
     }
 
-    private void dataMove(final int progress, final ViewHolder vh) {
+    private void dataMove(final int progress, final ViewHolder vh , final Collection bean ) {
         Model.getInstance().getGlobalThreadPool().execute(new Runnable() {
             @Override
             public void run() {
@@ -160,12 +163,16 @@ public class CommunityAdapter extends BaseSwipListAdapter {
                         vh.dataProportion.setText(progress + "%");
 
                         float text = progress;
-                        float right = (text/100)*9;
-                        DecimalFormat df = new DecimalFormat("#0.00 ");
+                        float right = (text/100)*3200;
+                        DecimalFormat df = new DecimalFormat("#0.0");
                         String format = df.format(right);
                         Log.e(TAG, "text : " + text );
                         vh.dataAllocationAmount.setText(format+"G");
                         vh.dataProportion.setTranslationX(progress * scrollDistance);
+                        vh.dataPercent.setText("Data   : " + progress + "%");
+                        bean.setDataTime(progress);
+                        Log.e(TAG, "id data: " + bean.getNamed() );
+                        RealmHelper.getInstance().updateDataCollection(bean.getNamed(),progress);
                     }
                 });
                 try {
@@ -177,7 +184,7 @@ public class CommunityAdapter extends BaseSwipListAdapter {
         });
     }
 
-    private void voiceMove(final int progress, final ViewHolder vh) {
+    private void voiceMove(final int progress, final ViewHolder vh, final Collection bean) {
         Model.getInstance().getGlobalThreadPool().execute(new Runnable() {
             @Override
             public void run() {
@@ -188,11 +195,15 @@ public class CommunityAdapter extends BaseSwipListAdapter {
                     public void run() {
                         vh.voiceProportion.setText(progress + "%");
                         float text = progress;
-                        float right = (text/100)*25;
-                        DecimalFormat df = new DecimalFormat("#0.00");
+                        float right = (text/100)*75;
+                        DecimalFormat df = new DecimalFormat("#0.0");
                         String format = df.format(right);
                         vh.voiceAllocationAmount.setText(format+"Hours");
                         vh.voiceProportion.setTranslationX(progress * scrollDistance);
+                        vh.voicePercent.setText("Voice  : " + progress + "%");
+                        bean.setVoice(progress);
+                        Log.e(TAG, "id: voice " + bean.getNamed() );
+                        RealmHelper.getInstance().updateVoiceCollection(bean.getNamed(),progress);
                     }
                 });
                 try {
@@ -232,8 +243,12 @@ public class CommunityAdapter extends BaseSwipListAdapter {
         //比例
         TextView dataProportion;
         TextView voiceProportion;
+
         public TextView dataAllocationAmount;
         public TextView voiceAllocationAmount;
+        //百分比
+        public TextView dataPercent;
+        public TextView voicePercent;
     }
 
     public void setIsgone(boolean b) {

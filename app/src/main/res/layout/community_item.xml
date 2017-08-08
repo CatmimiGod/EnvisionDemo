@@ -15,6 +15,8 @@
             android:id="@+id/iv_sghead"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/voice_icon_noselect"
             android:padding="6dp"
             />
@@ -28,7 +30,7 @@
             android:orientation="vertical"
             >
 
-            <TextView
+            <com.space.licht.envisiondemo.widget.textview.RegularTextView
                 android:id="@+id/community_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,7 +39,7 @@
                 android:textSize="16sp"
                 />
 
-            <TextView
+            <com.space.licht.envisiondemo.widget.textview.RegularTextView
                 android:id="@+id/community_tel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,17 +56,21 @@
             android:layout_marginRight="10dp"
             android:orientation="vertical">
 
-            <TextView
+            <com.space.licht.envisiondemo.widget.textview.RegularTextView
                 android:layout_width="wrap_content"
+                android:id="@+id/data_percent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:text="Data   : 20%"
                 android:textColor="@color/bel_grey_text"
                 />
 
-            <TextView
+            <com.space.licht.envisiondemo.widget.textview.RegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:text="Voice : 15%"
+                android:id="@+id/voice_percent"
                 android:textColor="@color/bel_grey_text"
                 />
         </LinearLayout>
@@ -75,99 +81,98 @@
         android:id="@+id/community_progress_gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
-        <TextView
-            android:textColor="@color/bel_grey_text"
-            android:id="@+id/data_allocation_proportion"
-            android:text="20%"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="290dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
-            <TextView
-                android:textColor="@color/bel_grey_text"
-                android:id="@+id/data_allocation_amount"
-            android:text="4G"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-           </RelativeLayout>
+            <com.space.licht.envisiondemo.widget.textview.RegularTextView
+                android:id="@+id/data_allocation_proportion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="280dp"
+                android:text="0%"
+                android:textColor="@color/bel_grey_text"/>
+
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <com.space.licht.envisiondemo.widget.textview.RegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/bel_grey_text"
-                android:text="Data"/>
+                android:layout_marginLeft="20dp"
+                android:text="Data"
+                android:textColor="@color/bel_grey_text"/>
 
             <SeekBar
                 android:id="@+id/data_allocation_seekbar"
-                android:layout_width="320dp"
+                android:layout_width="310dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
                 android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
                 android:maxHeight="15px"
                 android:minHeight="7px"
                 android:progressDrawable="@drawable/xml_seekbar_progress_data"
                 android:thumb="@mipmap/community_icon_switch_botton"
                 android:thumbOffset="7px"/>
         </RelativeLayout>
+        <com.space.licht.envisiondemo.widget.textview.RegularTextView
+            android:id="@+id/data_allocation_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:text="4G"
+            android:textColor="@color/bel_grey_text"/>
+
         <RelativeLayout
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
-            <TextView
-                android:id="@+id/voice_allocation_proportion"
-                android:text="20%"
-                android:textColor="@color/bel_grey_text"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="290dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
-            <TextView
-                android:id="@+id/voice_allocation_amount"
-                android:text="3Hours"
-                android:textColor="@color/bel_grey_text"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
+            <com.space.licht.envisiondemo.widget.textview.RegularTextView
+                android:id="@+id/voice_allocation_proportion"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="280dp"
+                android:text="0%"
+                android:textColor="@color/bel_grey_text"/>
+
+
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/community_progress_second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
-            <TextView
-                android:textColor="@color/bel_grey_text"
+            <com.space.licht.envisiondemo.widget.textview.RegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:text="Voice"/>
+                android:layout_marginLeft="20dp"
+                android:text="Voice"
+                android:textColor="@color/bel_grey_text"/>
 
             <SeekBar
                 android:id="@+id/voice_allocation_seekbar"
-                android:layout_width="320dp"
+                android:layout_width="310dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35px"
                 android:layout_alignParentRight="true"
+                android:layout_marginLeft="35px"
                 android:layout_marginRight="10dp"
                 android:maxHeight="15px"
                 android:minHeight="7px"
@@ -175,7 +180,19 @@
                 android:thumb="@mipmap/community_icon_switch_botton"
                 android:thumbOffset="7px"/>
         </RelativeLayout>
+        <com.space.licht.envisiondemo.widget.textview.RegularTextView
+            android:id="@+id/voice_allocation_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginRight="20dp"
+            android:text="3Hours"
+            android:textColor="@color/bel_grey_text"/>
     </LinearLayout>
 
-
+    <ImageView
+        android:background="@color/bel_grey_text"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
 </LinearLayout>

@@ -74,6 +74,30 @@ public class RealmHelper implements DBHelper {
     }
 
     /**
+     * 更改data收藏记录
+     *
+     * @param id
+     */
+    public void updateDataCollection(String id , int progress) {
+        Collection data = getRealm().where(Collection.class).equalTo("named", id).findFirst();
+        getRealm().beginTransaction();
+        data.setDataTime(progress);
+        getRealm().commitTransaction();
+    }
+
+    /**
+     * 更改vioce收藏记录
+     *
+     * @param id
+     */
+    public void updateVoiceCollection(String id , int progress) {
+        Collection data = getRealm().where(Collection.class).equalTo("named", id).findFirst();
+        getRealm().beginTransaction();
+        data.setVoice(progress);
+        getRealm().commitTransaction();
+    }
+
+    /**
      * 清空收藏
      */
     public void deleteAllCollection() {

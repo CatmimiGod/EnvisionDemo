@@ -10,17 +10,16 @@
         android:layout_height="80dp"
         android:background="@color/colorBluePrimary">
 
-        <TextView
-            android:layout_width="match_parent"
+        <com.space.licht.envisiondemo.widget.textview.BoldTextView
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="3dp"
-            android:gravity="center"
             android:text="Package Sharing"
-            android:textSize="20dp"/>
+            android:textSize="20sp"/>
 
-        <TextView
+        <com.space.licht.envisiondemo.widget.textview.BoldTextView
             android:id="@+id/package_allocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
+        android:paddingBottom="20dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -65,12 +65,12 @@
             <Button
                 android:layout_width="20dp"
                 android:layout_height="12dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="80dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/btn_border_gray"/>
 
             <com.space.licht.envisiondemo.widget.textview.BoldTextView
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
@@ -87,11 +87,13 @@
             android:orientation="horizontal">
 
             <com.space.licht.envisiondemo.widget.textview.BoldTextView
-                android:layout_width="40dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="20dp"
                 android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
                 android:text="Data"
                 android:textColor="@color/bel_grey_text"/>
 
@@ -106,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.space.licht.envisiondemo.widget.textview.RegularTextView
                         android:id="@+id/progress_precent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -114,12 +116,12 @@
                         android:textColor="#666"
                         android:textSize="16sp"/>
 
-                    <TextView
+                    <com.space.licht.envisiondemo.widget.textview.RegularTextView
                         android:id="@+id/progress_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:text="30G"
+                        android:text="3200G"
                         android:layout_marginRight="20dp"
                         android:textColor="#666"
                         android:textSize="16sp"/>
@@ -129,9 +131,8 @@
                 <ProgressBar
                     android:id="@+id/pb_progressbar"
                     style="@style/StyleProgressBarMini"
-                    android:layout_width="280dp"
-                    android:layout_height="10dp"
-
+                    android:layout_width="255dp"
+                    android:layout_height="12dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/btn_border_green"
                     android:max="100"
@@ -149,12 +150,14 @@
             android:orientation="horizontal">
 
             <com.space.licht.envisiondemo.widget.textview.BoldTextView
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
                 android:textSize="16sp"
                 android:text="Voice"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/bel_grey_text"/>
 
             <LinearLayout
@@ -167,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.space.licht.envisiondemo.widget.textview.RegularTextView
                         android:id="@+id/progress_precent_voice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -175,7 +178,7 @@
                         android:textColor="#666"
                         android:textSize="16sp"/>
 
-                    <TextView
+                    <com.space.licht.envisiondemo.widget.textview.RegularTextView
                         android:id="@+id/progress_total_voice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -190,8 +193,8 @@
                 <ProgressBar
                     android:id="@+id/pb_progressbar_voice"
                     style="@style/StyleProgressBarMini2"
-                    android:layout_width="280dp"
-                    android:layout_height="10dp"
+                    android:layout_width="255dp"
+                    android:layout_height="12dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/btn_border_green"
                     android:max="100"

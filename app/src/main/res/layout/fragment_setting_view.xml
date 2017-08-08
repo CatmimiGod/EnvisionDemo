@@ -3,33 +3,42 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-
     <RelativeLayout
 
-        android:background="@color/colorBluePrimary"
         android:layout_width="match_parent"
-        android:layout_height="65dp">
+        android:layout_height="80dp"
+        android:background="@color/colorBluePrimary">
         <ImageView
+            android:visibility="gone"
             android:id="@+id/setting_back"
-            android:layout_marginTop="30dp"
-            android:src="@mipmap/top_icon_back"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@mipmap/back"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
 
-        <TextView
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/setting"/>
+        <com.space.licht.envisiondemo.widget.textview.BoldTextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:text="Call Control"
+            android:textSize="20sp"/>
+
         <ImageView
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="22dp"
             android:id="@+id/setting_add_manage"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:src="@mipmap/top_icon_add"
-            android:layout_width="wrap_content"
+            android:layout_width="20dp"
             android:layout_alignParentRight="true"
-            android:layout_height="match_parent"/>
+            android:layout_height="20dp"/>
+
     </RelativeLayout>
+
     <FrameLayout
         android:id="@+id/setting_fl"
         android:layout_width="match_parent"

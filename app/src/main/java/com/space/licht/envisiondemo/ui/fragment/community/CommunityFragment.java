@@ -15,8 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.app.App;
 import com.space.licht.envisiondemo.model.bean.Collection;
-import com.space.licht.envisiondemo.model.db.RealmHelper;
 import com.space.licht.envisiondemo.ui.fragment.DensityUtil;
 import com.space.licht.envisiondemo.ui.fragment.Model;
 
@@ -32,7 +32,7 @@ import butterknife.OnClick;
  */
 public class CommunityFragment extends Fragment {
 
-    private static final String TAG = "classfication";
+    private static final String TAG = "CommunityFragment";
     @BindView(R.id.community_lv)
     ListView mCommunityLv;
     @BindView(R.id.progress_precent)
@@ -74,7 +74,7 @@ public class CommunityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.fragment_community_view, null);
         //得到屏幕的宽
-        width = DensityUtil.dip2px(getContext(), 300);
+        width = DensityUtil.dip2px(getContext(), 255);
 //        width = getActivity().getWindowManager().getDefaultDisplay().getWidth();
         ButterKnife.bind(this, mView);
         return mView;
@@ -84,7 +84,7 @@ public class CommunityFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //获取数据
-        mSGDatas = RealmHelper.getInstance().getCollectionList();
+        mSGDatas = App.sData;
         initViewI();
         initProgress();
     }
@@ -128,14 +128,14 @@ public class CommunityFragment extends Fragment {
             @Override
             public void run() {
                 //每一段要移动的距离
-                final float scrollDistance = (float) ((1.0 / 30) * width);
+                final float scrollDistance = (float) ((1.0 / 32) * width);
                 Log.e(TAG, "run: " + scrollDistance);
-                pbProgressbar.setMax(30);
+                pbProgressbar.setMax(32);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        progressPrecent.setText("21G");
-                        progressPrecent.setTranslationX(18 * scrollDistance);
+                        progressPrecent.setText("2100G");
+                        progressPrecent.setTranslationX(15 * scrollDistance);
                         pbProgressbar.incrementProgressBy(21);
                     }
                 });
@@ -160,7 +160,7 @@ public class CommunityFragment extends Fragment {
                             public void run() {
                                 Log.e(TAG, "run: ");
                                 mProgressPrecentVoice.setText("50Hours");
-                                mProgressPrecentVoice.setTranslationX(40 * scrollDistance);
+                                mProgressPrecentVoice.setTranslationX(31 * scrollDistance);
                                 mPbProgressbarVoice.incrementProgressBy(50);
                             }
                         });

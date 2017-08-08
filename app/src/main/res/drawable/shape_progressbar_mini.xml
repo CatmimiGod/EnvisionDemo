@@ -25,15 +25,18 @@
         </clip>
     </item>
     <item android:id="@android:id/progress">
-        <clip>
-            <shape>
-                <corners android:radius="90dp" />
-                <gradient
-                    android:angle="270"
-                    android:centerY="0.75"
-                    android:endColor="#00eaff"
-                    android:startColor="#00eaff" />
-            </shape>
-        </clip>
+        <!--<clip>-->
+            <!--<shape>-->
+                <!--<corners android:radius="90dp" />-->
+                <!--<gradient-->
+                    <!--android:angle="270"-->
+                    <!--android:centerY="0.75"-->
+                    <!--android:endColor="#00eaff"-->
+                    <!--android:startColor="#00eaff" />-->
+            <!--</shape>-->
+        <!--</clip>-->
+
+        <scale android:scaleWidth="100%"
+               android:drawable="@drawable/progress_bar_ct1"   />
     </item>
 </layer-list>

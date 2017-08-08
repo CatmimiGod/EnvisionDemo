@@ -9,62 +9,66 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical">
+
         <ImageView
             android:id="@+id/call_out_delete"
-            android:src="@mipmap/edit_icon_delete"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:visibility="gone"
-            android:layout_height="wrap_content"/>
+            android:src="@mipmap/edit_icon_delete"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="80dp"
-            android:layout_weight="1"
             android:layout_marginLeft="20dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
             >
 
 
-            <TextView
+            <com.space.licht.envisiondemo.widget.textview.RegularTextView
                 android:id="@+id/call_out_time"
-                android:text="23:00-06:00"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_black"
+                android:text="23:00~06:00"
+                android:textColor="#999"
                 android:textSize="25sp"
                 />
 
-            <TextView
+            <com.space.licht.envisiondemo.widget.textview.RegularTextView
                 android:id="@+id/call_out_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="Monday"
-                android:textColor="@color/dark_black"
+                android:textColor="#999"
                 android:textSize="12sp"
                 />
         </LinearLayout>
 
         <com.space.licht.envisiondemo.widget.view.ToggleButton
-            android:layout_width="54dp"
             android:id="@+id/call_out_togglebutton"
-            android:layout_marginRight="30dp"
-            android:layout_height="30dp"/>
+            android:layout_width="54dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="30dp"/>
 
         <ImageView
             android:id="@+id/call_out_arrow_right"
-            android:src="@mipmap/icon_arrow_right"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="30dp"
-            android:visibility="gone"
-            android:layout_height="wrap_content"/>
+            android:src="@mipmap/icon_arrow_right"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/bel_grey_text"/>
 
 
 </LinearLayout>

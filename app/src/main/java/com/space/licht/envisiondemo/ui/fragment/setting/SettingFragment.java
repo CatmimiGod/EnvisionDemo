@@ -15,9 +15,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.space.licht.envisiondemo.R;
-import com.space.licht.envisiondemo.ui.fragment.classification.DataBean;
+import com.space.licht.envisiondemo.app.App;
+import com.space.licht.envisiondemo.model.bean.Collection;
+import com.space.licht.envisiondemo.ui.activitys.AddMemberActivity;
+import com.space.licht.envisiondemo.utils.JumpUtil;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,7 +42,6 @@ public class SettingFragment extends Fragment {
     @BindView(R.id.setting_fl)
     FrameLayout mSettingFl;
 
-    private ArrayList<DataBean> mSGDatas;
     private SettingAdapter mSgAdapter;
 
     @Override
@@ -61,51 +63,22 @@ public class SettingFragment extends Fragment {
      * 初始化数据
      */
     private void initDataI() {
-        mSGDatas = new ArrayList<DataBean>();
-        DataBean sgbean1 = new DataBean();
-        sgbean1.setSgName("刘备");
-        sgbean1.setSgPetName("玄德");
-        sgbean1.setSgHeadBp(R.drawable.father);
-        sgbean1.setSgDescribe("刘备");
-        DataBean sgbean2 = new DataBean();
-        sgbean2.setSgName("关羽");
-        sgbean2.setSgPetName("云长");
-        sgbean2.setSgHeadBp(R.drawable.father_large);
-        sgbean2.setSgDescribe("关羽");
-        DataBean sgbean3 = new DataBean();
-        sgbean3.setSgName("张飞");
-        sgbean3.setSgPetName("翼德");
-        sgbean3.setSgHeadBp(R.drawable.mother);
-        sgbean3.setSgDescribe("张飞");
-        DataBean sgbean4 = new DataBean();
-        sgbean4.setSgName("赵云");
-        sgbean4.setSgPetName("子龙");
-        sgbean4.setSgHeadBp(R.drawable.son);
-        sgbean4.setSgDescribe("赵云");
-        DataBean sgbean5 = new DataBean();
-        sgbean5.setSgName("马超");
-        sgbean5.setSgPetName("孟起");
-        sgbean5.setSgHeadBp(R.drawable.daughter);
-        sgbean5.setSgDescribe("马超");
-        mSGDatas.add(sgbean1);
-        mSGDatas.add(sgbean2);
-        mSGDatas.add(sgbean3);
-        mSGDatas.add(sgbean4);
-        mSGDatas.add(sgbean5);
+
     }
 
     /**
      * 初始化控件
      */
     private void initViewI() {
-        mSgAdapter = new SettingAdapter(getContext(), mSGDatas);
+        final List<Collection> data = App.sData;
+        mSgAdapter = new SettingAdapter(getContext(), data);
         mSettingLv.setAdapter(mSgAdapter);
 
         mSettingLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.e(TAG, "onItemClick: " + view + i);
-                DataBean dataBean = mSGDatas.get(i);
+                Collection dataBean = data.get(i);
                 //切换fragment
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
@@ -134,6 +107,7 @@ public class SettingFragment extends Fragment {
                 break;
             case R.id.setting_add_manage:
                 //TODO 跳转至增加页面
+                JumpUtil.jump(getContext(), AddMemberActivity.class);
                 break;
         }
     }

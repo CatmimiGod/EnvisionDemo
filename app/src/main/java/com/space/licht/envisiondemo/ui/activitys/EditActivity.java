@@ -1,8 +1,8 @@
 package com.space.licht.envisiondemo.ui.activitys;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.base.BaseActivity;
@@ -13,27 +13,41 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by licht
  * 2017/8/1 0001.
  */
 public class EditActivity extends BaseActivity {
-    @BindView(R.id.activity_edit_pickerviewone)
-    PickerView mActivityEditPickerviewone;
 
+
+    @BindView(R.id.activity_edit_pickerview_day)
+    PickerView mActivityEditPickerviewDay;
+    @BindView(R.id.activity_edit_pickerview_hour)
+    PickerView mActivityEditPickerviewHour;
+    @BindView(R.id.activity_edit_pickerview_min)
+    PickerView mActivityEditPickerviewMin;
+    @BindView(R.id.activity_edit_pickerview_time)
+    PickerView mActivityEditPickerviewTime;
     @BindView(R.id.activity_edit_delete)
     TextView mActivityEditDelete;
-    @BindView(R.id.activity_edit_pickerviewtwo)
-    PickerView mActivityEditPickerviewtwo;
-    @BindView(R.id.activity_edit_pickerviewthree)
-    PickerView mActivityEditPickerviewthree;
-    @BindView(R.id.activity_edit_pickerviewfour)
-    PickerView mActivityEditPickerviewfour;
+    @BindView(R.id.activity_edit_from_day)
+    TextView mActivityEditFromDay;
+    @BindView(R.id.activity_edit_from_time)
+    TextView mActivityEditFromTime;
+    @BindView(R.id.activity_edit_to_day)
+    TextView mActivityEditToDay;
+    @BindView(R.id.activity_edit_to_time)
+    TextView mActivityEditToTime;
     private List<String> mWeek;
     private List<String> mtimeQuantum;
     private List<String> mMonth;
     private List<String> mMinute;
+    private boolean isForm = true;
+    private int hour = 7;
+    private String min = "30";
+    private String time = "AM";
 
 
     @Override
@@ -41,27 +55,70 @@ public class EditActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
         ButterKnife.bind(this);
-
         initDate();
+        mActivityEditPickerviewDay.setData(mWeek);
+        mActivityEditPickerviewHour.setData(mMonth);
+        mActivityEditPickerviewMin.setData(mMinute);
+        mActivityEditPickerviewTime.setData(mtimeQuantum);
 
-        mActivityEditPickerviewone.setData(mWeek);
-        mActivityEditPickerviewtwo.setData(mMonth);
-        mActivityEditPickerviewone.setOnSelectListener(new PickerView.onSelectListener() {
+
+        mActivityEditPickerviewDay.setOnSelectListener(new PickerView.onSelectListener() {
 
             @Override
             public void onSelect(String text) {
-                Toast.makeText(EditActivity.this, "选择了 " + text,
-                        Toast.LENGTH_SHORT).show();
+                if (isForm) {
+                    mActivityEditFromDay.setText(text);
+                } else {
+                    mActivityEditToDay.setText(text);
+                }
             }
         });
-        mActivityEditPickerviewthree.setData(mMinute);
-        mActivityEditPickerviewfour.setData(mtimeQuantum);
-        mActivityEditPickerviewthree.setOnSelectListener(new PickerView.onSelectListener() {
+        mActivityEditPickerviewHour.setOnSelectListener(new PickerView.onSelectListener() {
 
             @Override
             public void onSelect(String text) {
-                Toast.makeText(EditActivity.this, "选择了 " + text + " 秒",
-                        Toast.LENGTH_SHORT).show();
+                if ("AM".equals(time)) {
+                    hour = Integer.parseInt(text);
+                } else {
+                    hour = Integer.parseInt(text) + 12;
+                }
+
+                if (isForm) {
+                    mActivityEditFromTime.setText(hour + ":" + min);
+                } else {
+                    mActivityEditToTime.setText(hour + ":" + min);
+                }
+            }
+        });
+        mActivityEditPickerviewMin.setOnSelectListener(new PickerView.onSelectListener() {
+
+            @Override
+            public void onSelect(String text) {
+                min = text;
+                if (isForm) {
+                    mActivityEditFromTime.setText(hour + ":" + min);
+                } else {
+                    mActivityEditToTime.setText(hour + ":" + min);
+                }
+            }
+        });
+        mActivityEditPickerviewTime.setOnSelectListener(new PickerView.onSelectListener() {
+
+            @Override
+            public void onSelect(String text) {
+                time = text;
+                if ("AM".equals(time)) {
+                    if (hour > 12)
+                    hour = Integer.parseInt(text)-12;
+                } else {
+                    hour = Integer.parseInt(text) + 12;
+                }
+
+                if (isForm) {
+                    mActivityEditFromTime.setText(hour + ":" + min);
+                } else {
+                    mActivityEditToTime.setText(hour + ":" + min);
+                }
             }
         });
     }
@@ -88,10 +145,24 @@ public class EditActivity extends BaseActivity {
             }
 
         }
-        for (int i = 1; i < timeQuantum.length; i++) {
+        for (int i = 0; i < timeQuantum.length; i++) {
             mtimeQuantum.add(timeQuantum[i]);
         }
 
 
+    }
+
+    @OnClick({R.id.activity_edit_from_day, R.id.activity_edit_from_time, R.id.activity_edit_to_day, R.id.activity_edit_to_time})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.activity_edit_from_day:
+            case R.id.activity_edit_from_time:
+                isForm = true;
+                break;
+            case R.id.activity_edit_to_day:
+            case R.id.activity_edit_to_time:
+                isForm = false;
+                break;
+        }
     }
 }

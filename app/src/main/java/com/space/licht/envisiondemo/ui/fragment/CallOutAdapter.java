@@ -9,10 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
-import com.space.licht.envisiondemo.ui.activitys.EditActivity;
 import com.space.licht.envisiondemo.ui.fragment.classification.BaseSwipListAdapter;
-import com.space.licht.envisiondemo.utils.JumpUtil;
 import com.space.licht.envisiondemo.widget.view.ToggleButton;
+
+import java.util.List;
 
 
 /**
@@ -28,7 +28,7 @@ public class CallOutAdapter extends BaseSwipListAdapter {
     /**
      * 数据源
      */
-    private String[] mDatas;
+    private List<String> mDatas;
     private boolean mIsEdit;
 
     /**
@@ -37,7 +37,7 @@ public class CallOutAdapter extends BaseSwipListAdapter {
      * @param context
      * @param datas
      */
-    public CallOutAdapter(Context context, String[] datas, boolean isEdit) {
+    public CallOutAdapter(Context context, List datas, boolean isEdit) {
         mContext = context;
         mDatas = datas;
         mIsEdit = isEdit;
@@ -45,12 +45,12 @@ public class CallOutAdapter extends BaseSwipListAdapter {
 
     @Override
     public int getCount() {
-        return mDatas.length;
+        return mDatas.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return mDatas[i];
+        return mDatas.get(i);
     }
 
     @Override
@@ -70,10 +70,14 @@ public class CallOutAdapter extends BaseSwipListAdapter {
             vh.delete = (ImageView) view.findViewById(R.id.call_out_delete);
             vh.arrowRight = (ImageView) view.findViewById(R.id.call_out_arrow_right);
             vh.mToggleButton = (ToggleButton) view.findViewById(R.id.call_out_togglebutton);
+
             view.setTag(vh);
         } else {
             vh = (ViewHolder) view.getTag();
         }
+        vh.time.setText(mDatas.get(position));
+
+
         if (mIsEdit) {
             vh.delete.setVisibility(View.VISIBLE);
             vh.arrowRight.setVisibility(View.VISIBLE);
@@ -84,22 +88,36 @@ public class CallOutAdapter extends BaseSwipListAdapter {
             vh.mToggleButton.setVisibility(View.VISIBLE);
         }
 
+        vh.delete.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                mDatas.remove(position);
+                notifyDataSetChanged();
+            }
+        });
+
+        final ViewHolder finalVh = vh;
         vh.mToggleButton.setOnToggleChanged(new ToggleButton.OnToggleChanged() {
             @Override
             public void onToggle(boolean on) {
                 if (on) {
                     Log.e(TAG, "onToggle: " + position);
+                    finalVh.time.setTextColor(0xff333333);
+
                 } else {
                     Log.e(TAG, "onToggle: " + position);
+                    finalVh.time.setTextColor(0xff999999);
                 }
             }
         });
-        vh.arrowRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                JumpUtil.jump(mContext,EditActivity.class);
-            }
-        });
+
+
+        if (position % 2 == 0) {
+            vh.date.setText("Tuesday,Wednesday");
+            vh.time.setTextColor(0xff333333);
+            vh.mToggleButton.setToggleOn();
+        }
         return view;
     }
 

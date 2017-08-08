@@ -5,12 +5,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.app.App;
 import com.space.licht.envisiondemo.base.BaseFragment;
 
 import butterknife.BindView;
@@ -20,6 +22,7 @@ import butterknife.ButterKnife;
  * Description:
  */
 public class ChartFragment extends BaseFragment {
+    private static final String TAG = "ChartFragment";
     @BindView(R.id.pager)
     ViewPager pager;
     @BindView(R.id.dot_1)
@@ -28,6 +31,7 @@ public class ChartFragment extends BaseFragment {
     ImageView mDot2;
     private DataFragment twoFragment;
     private VoiceFragment oneFragment;
+    private MyPagerAdapter mMyPagerAdapter;
 
 
     @Override
@@ -38,20 +42,21 @@ public class ChartFragment extends BaseFragment {
     @Override
     protected void initView(LayoutInflater inflater) {
         super.initView(inflater);
-
-        pager.setAdapter(new MyPagerAdapter(getActivity().getSupportFragmentManager()));
+        mMyPagerAdapter = new MyPagerAdapter(getActivity().getSupportFragmentManager());
+        pager.setAdapter(mMyPagerAdapter);
         pager.setOffscreenPageLimit(2);
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
+
             @Override
             public void onPageSelected(int position) {
-                if (position == 0){
+                if (position == 0) {
                     mDot1.setEnabled(true);
                     mDot2.setEnabled(false);
-                }else{
+                } else {
                     mDot2.setEnabled(true);
                     mDot1.setEnabled(false);
                 }
@@ -106,6 +111,27 @@ public class ChartFragment extends BaseFragment {
 
                     return null;
             }
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause: ");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume: ");
+        if (oneFragment != null) {
+            oneFragment.mChartWave.setPercent(0.88f);
+            oneFragment.mChartPie.setDataList(App.sData);
         }
     }
 

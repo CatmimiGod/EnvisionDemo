@@ -113,7 +113,7 @@ public class MemberFragment extends Fragment {
             bean6.setNamed("Unused");
             bean6.setId("Unused");
             bean6.setVoice(24);
-            bean6.setDataTime(28);
+            bean6.setDataTime(34);
             bean6.setUsedColor(0xff00a2ff);
             RealmHelper.getInstance().insertCollection(bean6);
 
@@ -123,13 +123,13 @@ public class MemberFragment extends Fragment {
             bean5.setId("ipad");
             bean5.setHeadImg(R.drawable.ipad);
             bean5.setTel("628-458-5869");
-            bean5.setVoice(8);
-            bean5.setDataTime(13);
+            bean5.setVoice(9);
+            bean5.setDataTime(7);
 
             bean5.setTotalColor(0xfff2f7dd);
             bean5.setUsedColor(0xFFBDD757);
-            bean5.setDataUsed(420);
-            bean5.setVoiceUsed(200);
+            bean5.setDataUsed(200);
+            bean5.setVoiceUsed(320);
             RealmHelper.getInstance().insertCollection(bean5);
 
 
@@ -142,8 +142,8 @@ public class MemberFragment extends Fragment {
             bean4.setDataTime(13);
             bean4.setTotalColor(0xfffcf9de);
             bean4.setUsedColor(0xFFF1E15A);
-            bean4.setDataUsed(380);
-            bean4.setVoiceUsed(220);
+            bean4.setDataUsed(220);
+            bean4.setVoiceUsed(350);
             RealmHelper.getInstance().insertCollection(bean4);
 
             Collection bean3 = new Collection();
@@ -155,8 +155,8 @@ public class MemberFragment extends Fragment {
             bean3.setDataTime(10);
             bean3.setTotalColor(0xfffff6de);
             bean3.setUsedColor(0xFFFBD05A);
-            bean3.setDataUsed(610);
-            bean3.setVoiceUsed(200);
+            bean3.setDataUsed(200);
+            bean3.setVoiceUsed(310);
             RealmHelper.getInstance().insertCollection(bean3);
 
             Collection bean = new Collection();

@@ -57,5 +57,10 @@
             android:src="@drawable/icon_arrow_right"/>
     </LinearLayout>
 
+    <ImageView
+        android:background="@color/bel_grey_text"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
 
 </LinearLayout>

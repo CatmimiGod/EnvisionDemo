@@ -17,8 +17,10 @@ import android.widget.TextView;
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.app.App;
 import com.space.licht.envisiondemo.model.bean.Collection;
+import com.space.licht.envisiondemo.ui.activitys.PlayVideoActivity;
 import com.space.licht.envisiondemo.ui.fragment.DensityUtil;
 import com.space.licht.envisiondemo.ui.fragment.Model;
+import com.space.licht.envisiondemo.utils.JumpUtil;
 
 import java.util.List;
 
@@ -101,7 +103,7 @@ public class CommunityFragment extends Fragment {
      */
     private void initViewI() {
 
-        mCommunityAdapter = new CommunityAdapter(getContext(), mSGDatas, isgone , handler);
+        mCommunityAdapter = new CommunityAdapter(getContext(), mSGDatas, isgone , handler,progressPrecent,pbProgressbar);
         mCommunityLv.setAdapter(mCommunityAdapter);
 
         mCommunityLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -118,33 +120,24 @@ public class CommunityFragment extends Fragment {
         currentStatue = 0;
         currentPosition = 0;
         pbProgressbar.setProgress(0);
+
         //效果的实现
         initAchieve();
-
     }
 
     private void initAchieve() {
         Model.getInstance().getGlobalThreadPool().execute(new Runnable() {
             @Override
             public void run() {
-                //每一段要移动的距离
-                final float scrollDistance = (float) ((1.0 / 32) * width);
-                Log.e(TAG, "run: " + scrollDistance);
-                pbProgressbar.setMax(32);
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressPrecent.setText("2100G");
-                        progressPrecent.setTranslationX(15 * scrollDistance);
-                        pbProgressbar.incrementProgressBy(21);
-                    }
-                });
+                pbProgressbar.setMax(3200);
+                pbProgressbar.setProgress(2100);
                 try {
                     Thread.sleep(30);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+
         });
 
         Model.getInstance().getGlobalThreadPool().execute(
@@ -185,5 +178,8 @@ public class CommunityFragment extends Fragment {
 
         mCommunityAdapter.setIsgone(isgone);
         mCommunityAdapter.notifyDataSetChanged();
+        if (isgone){
+            JumpUtil.jump(getContext(),PlayVideoActivity.class);
+        }
     }
 }

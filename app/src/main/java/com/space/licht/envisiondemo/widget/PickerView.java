@@ -41,8 +41,8 @@ public class PickerView extends View {
     private int mCurrentSelected;
     private Paint mPaint;
 
-    private float mMaxTextSize = 80;
-    private float mMinTextSize = 40;
+    private float mMaxTextSize = 60;
+    private float mMinTextSize = 30;
 
     private float mMaxTextAlpha = 255;
     private float mMinTextAlpha = 120;
@@ -159,7 +159,7 @@ public class PickerView extends View {
         mViewWidth = getMeasuredWidth();
         // 按照View的高度计算字体大小
         mMaxTextSize = mViewHeight / 8.0f;
-        mMinTextSize = mMaxTextSize / 4f;
+        mMinTextSize = mMaxTextSize / 2f;
         isInit = true;
         invalidate();
     }
@@ -224,7 +224,6 @@ public class PickerView extends View {
         float baseline = (float) (y - (fmi.bottom / 2.0 + fmi.top / 2.0));
         canvas.drawText(mDataList.get(mCurrentSelected + type * position),
                 (float) (mViewWidth / 2.0), baseline, mPaint);
-
     }
 
     /**

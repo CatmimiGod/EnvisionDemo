@@ -3,11 +3,11 @@
        android:shape="oval">
 
     <!-- 内部颜色 -->
-    <solid android:color="#d7f1ff" />
+    <solid android:color="#ffffff" />
     <!-- 边缘线条颜色 -->
     <stroke
-        android:width="0dp"
-        android:color="@color/bel_lightgrey_text" />
+        android:width="1dp"
+        android:color="#999" />
 
 
 </shape>

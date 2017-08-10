@@ -15,12 +15,13 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.app.App;
 import com.space.licht.envisiondemo.base.BaseActivity;
+import com.space.licht.envisiondemo.model.bean.Collection;
 import com.space.licht.envisiondemo.ui.fragment.OneNumberAdapter;
-import com.space.licht.envisiondemo.ui.fragment.classification.DataBean;
 import com.space.licht.envisiondemo.utils.JumpUtil;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,8 +47,8 @@ public class OneNumberActivity extends BaseActivity {
     @BindView(R.id.activity_one_number_add_more)
     LinearLayout mActivityOneNumberAddMore;
 
-    private ArrayList mSGDatas;
     private OneNumberAdapter mSgAdapter;
+    private List<Collection> mData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,6 @@ public class OneNumberActivity extends BaseActivity {
         setContentView(R.layout.activity_one_number);
         ButterKnife.bind(this);
 
-        initDataI();
         initViewI();
         // step 1. create a MenuCreator
         SwipeMenuCreator creator = new SwipeMenuCreator() {
@@ -81,57 +81,33 @@ public class OneNumberActivity extends BaseActivity {
     }
 
     /**
-     * 初始化数据
-     */
-    private void initDataI() {
-        mSGDatas = new ArrayList<DataBean>();
-        DataBean sgbean1 = new DataBean();
-        sgbean1.setSgName("刘备");
-        sgbean1.setSgPetName("玄德");
-        sgbean1.setSgHeadBp(R.drawable.father);
-        sgbean1.setSgDescribe("刘备");
-        DataBean sgbean2 = new DataBean();
-        sgbean2.setSgName("关羽");
-        sgbean2.setSgPetName("云长");
-        sgbean2.setSgHeadBp(R.drawable.father_large);
-        sgbean2.setSgDescribe("关羽");
-        DataBean sgbean3 = new DataBean();
-        sgbean3.setSgName("张飞");
-        sgbean3.setSgPetName("翼德");
-        sgbean3.setSgHeadBp(R.drawable.mother);
-        sgbean3.setSgDescribe("张飞");
-        DataBean sgbean4 = new DataBean();
-        sgbean4.setSgName("赵云");
-        sgbean4.setSgPetName("子龙");
-        sgbean4.setSgHeadBp(R.drawable.son);
-        sgbean4.setSgDescribe("赵云");
-        DataBean sgbean5 = new DataBean();
-        sgbean5.setSgName("马超");
-        sgbean5.setSgPetName("孟起");
-        sgbean5.setSgHeadBp(R.drawable.daughter);
-        sgbean5.setSgDescribe("马超");
-        mSGDatas.add(sgbean1);
-        mSGDatas.add(sgbean2);
-        mSGDatas.add(sgbean3);
-        mSGDatas.add(sgbean4);
-        mSGDatas.add(sgbean5);
-    }
-
-    /**
      * 初始化控件
      */
     private void initViewI() {
-        mSgAdapter = new OneNumberAdapter(this, mSGDatas);
+        mData = App.sOneNumberData;
+        mSgAdapter = new OneNumberAdapter(this, mData);
         mActivityOneNumber.setAdapter(mSgAdapter);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mData = App.sOneNumberData;
+        mSgAdapter = new OneNumberAdapter(this, mData);
+        mActivityOneNumber.setAdapter(mSgAdapter);
+    }
 
-    @OnClick({R.id.activity_one_number_add_more})
+    @OnClick({R.id.activity_one_number_add_more,R.id.activity_one_number_back,R.id.activity_one_number_edit})
     public void onClick(View view) {
         switch (view.getId()) {
 
-            case R.id.activity_one_number:
+            case R.id.activity_one_number_back:
                 Log.e(TAG, "onItemClick: ");
+                finish();
+                break;
+            case R.id.activity_one_number_edit:
+                Log.e(TAG, "onItemClick: ");
+                finish();
                 break;
             case R.id.activity_one_number_add_more:
                 //todo add more

@@ -14,6 +14,7 @@
         <com.space.licht.envisiondemo.widget.XCRoundImageView
             android:id="@+id/setting_image_head"
             android:layout_width="60dp"
+            android:layout_marginLeft="20dp"
             android:layout_height="60dp"
             android:background="@drawable/voice_icon_noselect"
             android:padding="6dp"

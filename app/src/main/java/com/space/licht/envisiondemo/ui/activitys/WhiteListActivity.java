@@ -13,9 +13,9 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.app.App;
 import com.space.licht.envisiondemo.base.BaseActivity;
 import com.space.licht.envisiondemo.model.bean.Collection;
-import com.space.licht.envisiondemo.model.db.RealmHelper;
 import com.space.licht.envisiondemo.ui.fragment.member.SGAdapter;
 import com.space.licht.envisiondemo.utils.JumpUtil;
 
@@ -48,7 +48,7 @@ public class WhiteListActivity extends BaseActivity {
         setContentView(R.layout.activity_white_list);
         ButterKnife.bind(this);
 
-        initDataI();
+        mSGDatas = App.sWhitelistData;
         initViewI();
         // step 1. create a MenuCreator
         SwipeMenuCreator creator = new SwipeMenuCreator() {
@@ -91,12 +91,15 @@ public class WhiteListActivity extends BaseActivity {
 
     }
 
-    /**
-     * 初始化数据
-     */
-    private void initDataI() {
-        mSGDatas = RealmHelper.getInstance().getCollectionList();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mSGDatas = App.sWhitelistData;
+        mSgAdapter = new SGAdapter(this, mSGDatas);
+        mActivityWhiteListSwipelv.setAdapter(mSgAdapter);
     }
+
+
 
     /**
      * 初始化控件

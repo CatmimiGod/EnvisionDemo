@@ -51,7 +51,7 @@ public class VoiceFragment extends BaseFragment {
                 Toast.makeText(getActivity(), "点击了" + position, Toast.LENGTH_SHORT).show();
             }
         });
-        float percent = 0.56f;
+        float percent = 1-mSGDatas.get(0).getVoice()/100f;
         mChartWave.setPercent(percent);
 
 
@@ -73,4 +73,9 @@ public class VoiceFragment extends BaseFragment {
     }
 
 
+    public void updataVoicePage(List<Collection> data) {
+        mChartPie.setDataList(data);
+        mChartWave.setPercent(1-data.get(0).getVoice()/100f);
+        mChartBarchart.setData(data);
+    }
 }

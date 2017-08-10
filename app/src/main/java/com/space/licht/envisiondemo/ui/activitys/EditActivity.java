@@ -1,11 +1,14 @@
 package com.space.licht.envisiondemo.ui.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.app.App;
 import com.space.licht.envisiondemo.base.BaseActivity;
+import com.space.licht.envisiondemo.ui.fragment.setting.TimeBean;
 import com.space.licht.envisiondemo.utils.JumpUtil;
 import com.space.licht.envisiondemo.utils.PreUtils;
 import com.space.licht.envisiondemo.widget.PickerView;
@@ -62,11 +65,23 @@ public class EditActivity extends BaseActivity {
         setContentView(R.layout.activity_edit);
         ButterKnife.bind(this);
         initDate();
+        Intent intent = getIntent();
+        String selected = intent.getStringExtra("selected");
+
+
+
         mActivityEditPickerviewDay.setData(mWeek);
         mActivityEditPickerviewHour.setData(mMonth);
         mActivityEditPickerviewMin.setData(mMinute);
         mActivityEditPickerviewTime.setData(mtimeQuantum);
 
+
+        if (!selected.isEmpty()){
+            int selecte = Integer.parseInt(selected);
+            List<TimeBean> timeData = App.sTimeData;
+            TimeBean timeBean = timeData.get(selecte);
+            initView(timeBean);
+        }
 
         mActivityEditPickerviewDay.setOnSelectListener(new PickerView.onSelectListener() {
 
@@ -127,6 +142,22 @@ public class EditActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    private void initView(TimeBean timeBean) {
+        mActivityEditFromDay.setText(timeBean.getsStartDay());
+        mActivityEditToDay.setText(timeBean.getsStopDay());
+        if ("AM".equals(timeBean.getsStartAMorPM())){
+            mActivityEditFromTime.setText(timeBean.getsStartHour()+":"+timeBean.getsStartMins());
+            mActivityEditToTime.setText(timeBean.getsStartHour()+":"+timeBean.getsStartMins());
+        }else{
+            mActivityEditFromTime.setText((Integer.parseInt(timeBean.getsStartHour())+12)+":"+timeBean.getsStartMins());
+            mActivityEditToTime.setText((Integer.parseInt(timeBean.getsStopHour())+12)+":"+timeBean.getsStopMins());
+        }
+        mActivityEditPickerviewDay.setSelected(timeBean.getsStartDay());
+        mActivityEditPickerviewHour.setSelected(Integer.parseInt(timeBean.getsStartHour())+"");
+        mActivityEditPickerviewMin.setSelected(timeBean.getsStartMins());
+        mActivityEditPickerviewTime.setSelected(timeBean.getsStartAMorPM());
     }
 
     private void initDate() {

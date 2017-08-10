@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.ui.fragment.classification.BaseSwipListAdapter;
+import com.space.licht.envisiondemo.ui.fragment.setting.TimeBean;
 import com.space.licht.envisiondemo.widget.view.ToggleButton;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class CallOutAdapter extends BaseSwipListAdapter {
     /**
      * 数据源
      */
-    private List<String> mDatas;
+    private List<TimeBean> mDatas;
     private boolean mIsEdit;
 
     /**
@@ -37,7 +38,7 @@ public class CallOutAdapter extends BaseSwipListAdapter {
      * @param context
      * @param datas
      */
-    public CallOutAdapter(Context context, List datas, boolean isEdit) {
+    public CallOutAdapter(Context context, List<TimeBean> datas, boolean isEdit) {
         mContext = context;
         mDatas = datas;
         mIsEdit = isEdit;
@@ -75,8 +76,9 @@ public class CallOutAdapter extends BaseSwipListAdapter {
         } else {
             vh = (ViewHolder) view.getTag();
         }
-        vh.time.setText(mDatas.get(position));
-
+        vh.time.setText(mDatas.get(position).getsStartHour()+":"+mDatas.get(position).getsStartMins()+"~"+
+                mDatas.get(position).getsStopHour()+":"+mDatas.get(position).getsStopMins());
+        vh.date.setText(mDatas.get(position).getsStartDay() + "~" +mDatas.get(position).getsStopDay() );
 
         if (mIsEdit) {
             vh.delete.setVisibility(View.VISIBLE);

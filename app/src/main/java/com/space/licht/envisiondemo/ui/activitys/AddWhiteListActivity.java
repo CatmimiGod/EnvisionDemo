@@ -6,8 +6,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.app.App;
 import com.space.licht.envisiondemo.base.BaseActivity;
-import com.space.licht.envisiondemo.utils.JumpUtil;
+import com.space.licht.envisiondemo.model.bean.Collection;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,7 +49,11 @@ public class AddWhiteListActivity extends BaseActivity {
                 break;
             case R.id.add_member_done:
                 //获取文本数据保存
-                JumpUtil.jump(this,CallContrlVideoActivity.class);
+                Collection bean2 = new Collection();
+                bean2.setNamed(mAddMemberName.getText().toString());
+                bean2.setHeadImg(R.mipmap.fancy);
+                bean2.setTel(mAddMemberTelmember.getText().toString());
+                App.sWhitelistData.add(bean2);
                 finish();
                 break;
             case R.id.add_member_photo:

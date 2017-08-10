@@ -6,7 +6,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.app.App;
 import com.space.licht.envisiondemo.base.BaseActivity;
+import com.space.licht.envisiondemo.model.bean.Collection;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +49,15 @@ public class AddMemberActivity extends BaseActivity {
                 break;
             case R.id.add_member_done:
                 //获取文本数据保存
+                Collection bean6 = new Collection();
+                bean6.setNamed(mAddMemberName.getText().toString());
+                bean6.setTel(mAddMemberTelmember.getText().toString());
+                bean6.setVoice(0);
+                bean6.setDataTime(0);
+                bean6.setUsedColor(0xff00a25f);
+                bean6.setVoiceUsed(0);
+                bean6.setDataUsed(0);
+                App.sData.add(1,bean6);
                 finish();
                 break;
             case R.id.add_member_photo:

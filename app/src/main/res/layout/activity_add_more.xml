@@ -11,7 +11,7 @@
         android:layout_height="80dp"
         android:background="@color/colorBluePrimary">
 
-        <TextView
+        <com.space.licht.envisiondemo.widget.textview.RegularTextView
             android:id="@+id/add_member_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,16 +24,15 @@
             android:text="Cancel"/>
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
+        <com.space.licht.envisiondemo.widget.textview.RegularTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
             android:text="New Member"
             android:textSize="20dp"/>
 
-        <TextView
+        <com.space.licht.envisiondemo.widget.textview.RegularTextView
             android:id="@+id/add_member_done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,7 +65,7 @@
             android:layout_gravity="center"
             android:orientation="vertical">
 
-            <TextView
+            <com.space.licht.envisiondemo.widget.textview.RegularTextView
                 android:id="@+id/add_member_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,13 +73,13 @@
                 android:layout_marginTop="15dp"
                 android:text="Name"
                 android:textColor="@color/bel_grey_text"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_margin="10dp"
-                android:background="#000"
+                android:background="#666"
                 />
         </LinearLayout>
 
@@ -94,7 +93,7 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-        <TextView
+        <com.space.licht.envisiondemo.widget.textview.RegularTextView
             android:id="@+id/add_member_telmember"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,13 +101,13 @@
             android:layout_marginTop="15dp"
             android:text="Tel Number"
             android:textColor="@color/bel_grey_text"
-            android:textSize="25sp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_margin="10dp"
-            android:background="#000"
+            android:background="#666"
             />
     </LinearLayout>
 
@@ -119,7 +118,7 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-        <TextView
+        <com.space.licht.envisiondemo.widget.textview.RegularTextView
             android:id="@+id/add_member_privatenumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -127,13 +126,13 @@
             android:layout_marginTop="15dp"
             android:text="Private Number"
             android:textColor="@color/bel_grey_text"
-            android:textSize="25sp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:layout_margin="10dp"
-            android:background="#000"
+            android:background="#666"
             />
     </LinearLayout>
 
@@ -142,7 +141,7 @@
         android:layout_height="25dp"
         android:layout_marginLeft="10dp"
         android:text="Comments"
-        android:textColor="#666"
+        android:textColor="#999"
         android:textSize="20sp"/>
 
 </LinearLayout>

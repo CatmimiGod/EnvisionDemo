@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="15dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
@@ -27,10 +27,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="New Member"
+            android:text="Add Whitelist"
             android:textSize="20dp"/>
 
         <TextView
@@ -39,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="15dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
             android:src="@mipmap/top_icon_add"
@@ -76,7 +75,7 @@
                 android:background="@null"
                 android:textColorHint="@color/gray"
                 android:textColor="@color/bel_grey_text"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -104,9 +103,9 @@
             android:layout_marginTop="15dp"
             android:hint="Tel Number"
             android:background="@null"
-            android:textColorHint="@color/gray"
+            android:textColorHint="#999"
             android:textColor="@color/bel_grey_text"
-            android:textSize="25sp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -131,11 +130,11 @@
             android:layout_marginTop="15dp"
             android:hint="Private Number"
             android:background="@null"
-            android:textColorHint="@color/gray"
+            android:textColorHint="#999"
             android:textColor="@color/bel_grey_text"
-            android:textSize="25sp"/>
+            android:textSize="20sp"/>
 
-        <TextView
+        <com.space.licht.envisiondemo.widget.textview.RegularTextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_margin="10dp"
@@ -149,6 +148,6 @@
         android:layout_marginLeft="10dp"
         android:text="Comments"
         android:textColor="#666"
-        android:textSize="20sp"/>
+        android:textSize="16sp"/>
 
 </LinearLayout>

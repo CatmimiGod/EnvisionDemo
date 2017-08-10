@@ -130,8 +130,11 @@ public class ChartFragment extends BaseFragment {
         super.onResume();
         Log.e(TAG, "onResume: ");
         if (oneFragment != null) {
-            oneFragment.mChartWave.setPercent(0.88f);
-            oneFragment.mChartPie.setDataList(App.sData);
+            oneFragment.updataVoicePage(App.sData);
+        }
+
+        if (twoFragment != null) {
+            twoFragment.updataDataPage(App.sData);
         }
     }
 

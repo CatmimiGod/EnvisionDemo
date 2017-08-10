@@ -103,7 +103,7 @@ public class CommunityFragment extends Fragment {
      */
     private void initViewI() {
 
-        mCommunityAdapter = new CommunityAdapter(getContext(), mSGDatas, isgone , handler,progressPrecent,pbProgressbar);
+        mCommunityAdapter = new CommunityAdapter(getContext(), mSGDatas, isgone, handler, progressPrecent, pbProgressbar,mProgressPrecentVoice,mPbProgressbarVoice);
         mCommunityLv.setAdapter(mCommunityAdapter);
 
         mCommunityLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -145,18 +145,8 @@ public class CommunityFragment extends Fragment {
                     @Override
                     public void run() {
                         //每一段要移动的距离
-                        final float scrollDistance = (float) ((1.0 / 75) * width);
                         mPbProgressbarVoice.setMax(75);
-
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Log.e(TAG, "run: ");
-                                mProgressPrecentVoice.setText("50Hours");
-                                mProgressPrecentVoice.setTranslationX(31 * scrollDistance);
-                                mPbProgressbarVoice.incrementProgressBy(50);
-                            }
-                        });
+                        mPbProgressbarVoice.setProgress(50);
                         try {
                             Thread.sleep(30);
                         } catch (InterruptedException e) {
@@ -170,18 +160,19 @@ public class CommunityFragment extends Fragment {
 
     @OnClick(R.id.package_allocation)
     public void onClick() {
-        if (isgone){
+        if (isgone) {
             isgone = false;
             mPackageAllocation.setText("Done");
-        }else{
+        } else {
             isgone = true;
             mPackageAllocation.setText("Allocation");
         }
 
         mCommunityAdapter.setIsgone(isgone);
+        App.sData= mCommunityAdapter.getDataCount();
         mCommunityAdapter.notifyDataSetChanged();
-        if (isgone){
-            JumpUtil.jump(getContext(),ShareVideoActivity.class);
+        if (isgone) {
+            JumpUtil.jump(getContext(), ShareVideoActivity.class);
         }
     }
 }

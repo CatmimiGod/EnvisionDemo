@@ -50,27 +50,22 @@ public class SettingcontrolFragment extends Fragment {
                 break;
             case R.id.setting_call_out:
                 JumpUtil.jump(getContext(),CallOutActivity.class);
-                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.setting_one_number:
                 //1号转接
                 JumpUtil.jump(getContext(),OneNumberActivity.class);
-                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.setting_Whitelist:
                 //白名单
                 JumpUtil.jump(getContext(),WhiteListActivity.class);
-                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.setting_Blacklist:
                 //黑名单
                 JumpUtil.jump(getContext(),BlackListActivity.class);
-                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.setting_Block_cellular_data:
                 //断网开关
                 JumpUtil.jump(getContext(),BlockCellularDataActivity.class);
-                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
         }
     }

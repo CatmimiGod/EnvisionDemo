@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * SGAdapter
  */
-public class SGAdapter extends BaseSwipListAdapter {
+public class MemberListAdapter extends BaseSwipListAdapter {
     private static final String TAG = "SGAdapter";
     /**
      * 上下文
@@ -38,7 +38,7 @@ public class SGAdapter extends BaseSwipListAdapter {
      * @param context
      * @param datas
      */
-    public SGAdapter(Context context, List<Collection> datas) {
+    public MemberListAdapter(Context context, List<Collection> datas) {
         mContext = context;
         mDatas = datas;
     }
@@ -111,19 +111,9 @@ public class SGAdapter extends BaseSwipListAdapter {
      * vh
      */
     class ViewHolder {
-        /**
-         * 姓名
-         */
         TextView mNameTv;
         ImageView mSgIV;
-        /**
-         * 字
-         */
         TextView mPetNmaeTv;
-        TextView mRecentTv;
-        /**
-         * 头像
-         */
         ImageView mHeadImg;
 
         InnerListview mListview;

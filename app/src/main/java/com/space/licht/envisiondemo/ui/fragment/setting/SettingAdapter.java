@@ -41,12 +41,12 @@ public class SettingAdapter extends BaseSwipListAdapter{
 
     @Override
     public int getCount() {
-        return mDatas.size();
+        return mDatas.size()-1;
     }
 
     @Override
     public Object getItem(int i) {
-        return mDatas.get(i);
+        return mDatas.get(i+1);
     }
 
     @Override

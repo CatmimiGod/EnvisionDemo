@@ -44,6 +44,8 @@ public class CommunityAdapter extends BaseSwipListAdapter {
     private final int width;
     private TextView mDataTv;
     private ProgressBar mPB;
+    private TextView mVoiceTv;
+    private ProgressBar mVoicePB;
     private float mDataCount;
 
     /**
@@ -52,7 +54,7 @@ public class CommunityAdapter extends BaseSwipListAdapter {
      * @param context
      * @param datas
      */
-    public CommunityAdapter(Context context, List<Collection> datas, boolean isgone, Handler handler, TextView tv, ProgressBar pb) {
+    public CommunityAdapter(Context context, List<Collection> datas, boolean isgone, Handler handler, TextView tv, ProgressBar pb, TextView voiceTv, ProgressBar voicePb) {
         mContext = context;
         mDatas = datas;
         mIsgone = isgone;
@@ -60,6 +62,8 @@ public class CommunityAdapter extends BaseSwipListAdapter {
         mHandler = handler;
         mPB = pb;
         mDataTv = tv;
+        mVoiceTv = voiceTv;
+        mVoicePB = voicePb;
     }
 
     @Override
@@ -102,6 +106,8 @@ public class CommunityAdapter extends BaseSwipListAdapter {
         }
         final Collection bean = (Collection) getItem(position);
         if (null != bean) {
+            vh.mDataSeekBar.setOnSeekBarChangeListener(null);
+            vh.mVoiceSeekBar.setOnSeekBarChangeListener(null);
             vh.name.setText(bean.getNamed());
             vh.tel.setText(bean.getTel());
             vh.mHeadImg.setImageResource(bean.getHeadImg());
@@ -122,6 +128,7 @@ public class CommunityAdapter extends BaseSwipListAdapter {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 dataMove(progress, finalVh, bean);
+
             }
 
             @Override
@@ -131,13 +138,14 @@ public class CommunityAdapter extends BaseSwipListAdapter {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                notifyDataSetChanged();
             }
         };
         SeekBar.OnSeekBarChangeListener voiceSeekBarListener = new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 voiceMove(progress, finalVh, bean);
+
             }
 
             @Override
@@ -147,7 +155,7 @@ public class CommunityAdapter extends BaseSwipListAdapter {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                notifyDataSetChanged();
             }
         };
         vh.mDataSeekBar.setOnSeekBarChangeListener(dataSeekBarListener);
@@ -188,8 +196,8 @@ public class CommunityAdapter extends BaseSwipListAdapter {
                                 mDataTv.setText((3200 - i1 * 32) + "G");
                                 unUsed.setDataTime(i1);
                                 mPB.setProgress(3200 - i1 * 32);
-                                mDataTv.setTranslationX(width * (2500 - i1 * 32)/3200);
-                            }else{
+                                mDataTv.setTranslationX(width * (2500 - i1 * 32) / 3200);
+                            } else {
                                 vh.mDataSeekBar.setProgress(bean.getDataTime());
                             }
                         } else {
@@ -211,24 +219,62 @@ public class CommunityAdapter extends BaseSwipListAdapter {
         Model.getInstance().getGlobalThreadPool().execute(new Runnable() {
             @Override
             public void run() {
-                //每一段要移动的距离
+//每一段要移动的距离
                 final float scrollDistance = (float) ((1.0 / 100) * width);
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
+                        Collection unUsed = mDatas.get(0);
                         vh.voiceProportion.setText(progress + "%");
-                        float text = progress;
-                        float right = (text / 100) * 75;
-                        DecimalFormat df = new DecimalFormat("#0.0");
-                        String format = df.format(right);
-                        vh.voiceAllocationAmount.setText(format + "Hours");
                         vh.voiceProportion.setTranslationX(progress * scrollDistance);
-                        vh.voicePercent.setText("Voice  : " + progress + "%");
-                        bean.setVoice(progress);
-                        Log.e(TAG, "id: voice " + bean.getNamed());
-//                        RealmHelper.getInstance().updateVoiceCollection(bean.getNamed(), progress);
+
+                        if (unUsed.getVoice() > 0 || progress < bean.getVoice()) {
+                            float text = progress;
+                            float right = (text / 100) * 75;
+                            DecimalFormat df = new DecimalFormat("#0.0");
+                            String format = df.format(right);
+                            Log.e(TAG, "text : " + text);
+                            vh.voiceAllocationAmount.setText(format + "Hours");
+
+                            vh.voicePercent.setText("voice  : " + progress + "%");
+
+                            int voiceTime = bean.getVoice();
+                            int i = progress - voiceTime;
+                            int unUsedDataTime = unUsed.getVoice();
+                            int i1 = unUsedDataTime - i;
+                            if (i1 >= 0) {
+                                bean.setVoice(progress);
+                                mVoiceTv.setText((75 - i1 * 0.75f) + "Hours");
+                                unUsed.setVoice(i1);
+                                mVoicePB.setProgress((int) (75 - i1 * 0.75f));
+                                mVoiceTv.setTranslationX(width * (50 - i1 * 0.75f) / 75);
+                            } else {
+                                vh.mVoiceSeekBar.setProgress(bean.getVoice());
+                            }
+                        } else {
+                            vh.mVoiceSeekBar.setProgress(bean.getVoice());
+                        }
                     }
                 });
+
+//                //每一段要移动的距离
+//                final float scrollDistance = (float) ((1.0 / 100) * width);
+//                mHandler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        vh.voiceProportion.setText(progress + "%");
+//                        float text = progress;
+//                        float right = (text / 100) * 75;
+//                        DecimalFormat df = new DecimalFormat("#0.0");
+//                        String format = df.format(right);
+//                        vh.voiceAllocationAmount.setText(format + "Hours");
+//                        vh.voiceProportion.setTranslationX(progress * scrollDistance);
+//                        vh.voicePercent.setText("Voice  : " + progress + "%");
+//                        bean.setVoice(progress);
+//                        Log.e(TAG, "id: voice " + bean.getNamed());
+////                        RealmHelper.getInstance().updateVoiceCollection(bean.getNamed(), progress);
+//                    }
+//                });
                 try {
                     Thread.sleep(30);
                 } catch (InterruptedException e) {
@@ -238,8 +284,8 @@ public class CommunityAdapter extends BaseSwipListAdapter {
         });
     }
 
-    public float getDataCount() {
-        return mDataCount;
+    public List<Collection> getDataCount() {
+        return mDatas;
     }
 
 

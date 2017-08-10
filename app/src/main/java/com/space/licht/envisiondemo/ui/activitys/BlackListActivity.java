@@ -4,16 +4,16 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.app.App;
 import com.space.licht.envisiondemo.base.BaseActivity;
-import com.space.licht.envisiondemo.model.db.RealmHelper;
 import com.space.licht.envisiondemo.ui.fragment.member.SGAdapter;
+import com.space.licht.envisiondemo.utils.JumpUtil;
 
 import java.util.List;
 
@@ -29,10 +29,6 @@ import static com.space.licht.envisiondemo.utils.SystemUtil.dp2px;
  */
 public class BlackListActivity extends BaseActivity {
     private static final String TAG = "BlackListActivity";
-    @BindView(R.id.activity_black_list_back)
-    ImageView mActivityBlackListBack;
-    @BindView(R.id.activity_black_list_add_icon)
-    ImageView mActivityBlackListAddIcon;
     @BindView(R.id.activity_Black_list_swipelv)
     SwipeMenuListView mActivityBlackListSwipelv;
     private List mSGDatas;
@@ -56,6 +52,7 @@ public class BlackListActivity extends BaseActivity {
                 openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
                         0xCE)));
                 // set item width
+
                 openItem.setWidth(dp2px(80));
                 // set item title
                 openItem.setIcon(R.mipmap.left_slip_icon_edit);
@@ -90,7 +87,7 @@ public class BlackListActivity extends BaseActivity {
      * 初始化数据
      */
     private void initDataI() {
-        mSGDatas = RealmHelper.getInstance().getCollectionList();
+        mSGDatas = App.sData;
     }
 
     /**
@@ -101,14 +98,14 @@ public class BlackListActivity extends BaseActivity {
         mActivityBlackListSwipelv.setAdapter(mSgAdapter);
     }
 
-    @OnClick({R.id.activity_black_list_back, R.id.activity_black_list_add_icon, R.id.activity_Black_list_swipelv})
+    @OnClick({R.id.activity_black_list_back, R.id.activity_black_list_add_icon})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.activity_black_list_back:
+                finish();
                 break;
             case R.id.activity_black_list_add_icon:
-                break;
-            case R.id.activity_Black_list_swipelv:
+                JumpUtil.jump(this,AddWhiteListActivity.class);
                 break;
         }
     }

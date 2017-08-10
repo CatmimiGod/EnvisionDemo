@@ -9,8 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.space.licht.envisiondemo.R;
+import com.space.licht.envisiondemo.model.bean.Collection;
 import com.space.licht.envisiondemo.ui.fragment.classification.BaseSwipListAdapter;
-import com.space.licht.envisiondemo.ui.fragment.classification.DataBean;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class OneNumberAdapter extends BaseSwipListAdapter{
     /**
      * 数据源
      */
-    private List<DataBean> mDatas;
+    private List<Collection> mDatas;
 
     /**
      * 构造函数
@@ -35,7 +35,7 @@ public class OneNumberAdapter extends BaseSwipListAdapter{
      * @param context
      * @param datas
      */
-    public OneNumberAdapter(Context context, List<DataBean> datas) {
+    public OneNumberAdapter(Context context, List<Collection> datas) {
         mContext = context;
         mDatas = datas;
     }
@@ -71,11 +71,11 @@ public class OneNumberAdapter extends BaseSwipListAdapter{
         } else {
             vh = (ViewHolder) view.getTag();
         }
-        DataBean bean = (DataBean) getItem(position);
+        Collection bean = (Collection) getItem(position);
         if (null != bean) {
-            vh.mNameTv.setText(bean.getSgName());
-            vh.mPetNmaeTv.setText(bean.getSgPetName());
-            vh.mHeadImg.setImageResource(bean.getSgHeadBp());
+            vh.mNameTv.setText(bean.getNamed());
+            vh.mPetNmaeTv.setText(bean.getTel());
+            vh.mHeadImg.setImageResource(bean.getHeadImg());
             final ViewHolder finalVh = vh;
         }
         return view;

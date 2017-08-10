@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -20,7 +21,6 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.space.licht.envisiondemo.R;
 import com.space.licht.envisiondemo.app.App;
 import com.space.licht.envisiondemo.model.bean.Collection;
-import com.space.licht.envisiondemo.model.db.RealmHelper;
 import com.space.licht.envisiondemo.utils.JumpUtil;
 
 import java.util.List;
@@ -44,7 +44,7 @@ public class MemberFragment extends Fragment {
     @BindView(R.id.member_add_icon)
     ImageView mMemberAddIcon;
     private List<Collection> mSGDatas;
-    private SGAdapter sgAdapter;
+    private MemberListAdapter sgAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -94,10 +94,32 @@ public class MemberFragment extends Fragment {
                 deleteItem.setIcon(R.mipmap.left_slip_icon_delete);
                 // add to menu
                 menu.addMenuItem(deleteItem);
+
             }
         };
         // set creator
         mLvShow.setMenuCreator(creator);
+        mLvShow.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                switch (index) {
+                    case 0:
+                        // open
+                        Toast.makeText(getActivity(),"Temporarily not opened",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        // delete
+                        Toast.makeText(getActivity(),"Temporarily not opened",Toast.LENGTH_SHORT).show();
+//                        App.sData.remove(index);
+//                        mSGDatas = App.sData;
+//                        sgAdapter = new MemberListAdapter(getContext(), mSGDatas);
+//                        mLvShow.setAdapter(sgAdapter);
+                        break;
+                }
+                // false : close the menu; true : not close the menu
+                return false;
+            }
+        });
 
     }
 
@@ -106,88 +128,14 @@ public class MemberFragment extends Fragment {
      */
     private void initDataI() {
         mSGDatas = App.sData;
-        if (mSGDatas.size() == 0) {
-            //初始化假数据
+    }
 
-            Collection bean6 = new Collection();
-            bean6.setNamed("Unused");
-            bean6.setId("Unused");
-            bean6.setVoice(24);
-            bean6.setDataTime(34);
-            bean6.setUsedColor(0xff00a2ff);
-            RealmHelper.getInstance().insertCollection(bean6);
-
-
-            Collection bean5 = new Collection();
-            bean5.setNamed("ipad");
-            bean5.setId("ipad");
-            bean5.setHeadImg(R.drawable.ipad);
-            bean5.setTel("628-458-5869");
-            bean5.setVoice(9);
-            bean5.setDataTime(7);
-
-            bean5.setTotalColor(0xfff2f7dd);
-            bean5.setUsedColor(0xFFBDD757);
-            bean5.setDataUsed(200);
-            bean5.setVoiceUsed(320);
-            RealmHelper.getInstance().insertCollection(bean5);
-
-
-            Collection bean4 = new Collection();
-            bean4.setNamed("Daughter");
-            bean4.setId("Daughter");
-            bean4.setHeadImg(R.drawable.daughter);
-            bean4.setTel("628-458-2896");
-            bean4.setVoice(12);
-            bean4.setDataTime(13);
-            bean4.setTotalColor(0xfffcf9de);
-            bean4.setUsedColor(0xFFF1E15A);
-            bean4.setDataUsed(220);
-            bean4.setVoiceUsed(350);
-            RealmHelper.getInstance().insertCollection(bean4);
-
-            Collection bean3 = new Collection();
-            bean3.setNamed("Son");
-            bean3.setId("Son");
-            bean3.setHeadImg(R.drawable.son);
-            bean3.setTel("628-458-4826");
-            bean3.setVoice(10);
-            bean3.setDataTime(10);
-            bean3.setTotalColor(0xfffff6de);
-            bean3.setUsedColor(0xFFFBD05A);
-            bean3.setDataUsed(200);
-            bean3.setVoiceUsed(310);
-            RealmHelper.getInstance().insertCollection(bean3);
-
-            Collection bean = new Collection();
-            bean.setNamed("Mother");
-            bean.setId("Mother");
-            bean.setHeadImg(R.drawable.mother);
-            bean.setTel("628-458-5869");
-            bean.setVoice(16);
-            bean.setDataTime(16);
-
-            bean.setTotalColor(0xfffeefdf);
-            bean.setUsedColor(0xfffcad5d);
-            bean.setDataUsed(380);
-            bean.setVoiceUsed(420);
-            RealmHelper.getInstance().insertCollection(bean);
-
-
-            Collection bean2 = new Collection();
-            bean2.setNamed("Father");
-            bean2.setId("Father");
-            bean2.setHeadImg(R.drawable.father);
-            bean2.setTel("628-458-5876");
-            bean2.setVoice(20);
-            bean2.setDataTime(20);
-            bean2.setTotalColor(0xfffee6de);
-            bean2.setUsedColor(0xFFFA8358);
-            bean2.setDataUsed(400);
-            bean2.setVoiceUsed(700);
-            RealmHelper.getInstance().insertCollection(bean2);
-            mSGDatas = App.sData;
-        }
+    @Override
+    public void onResume() {
+        super.onResume();
+        mSGDatas = App.sData;
+        sgAdapter = new MemberListAdapter(getContext(), mSGDatas);
+        mLvShow.setAdapter(sgAdapter);
     }
 
     /**
@@ -195,7 +143,7 @@ public class MemberFragment extends Fragment {
      */
 
     private void initViewI() {
-        sgAdapter = new SGAdapter(getContext(), mSGDatas);
+        sgAdapter = new MemberListAdapter(getContext(), mSGDatas);
         mLvShow.setAdapter(sgAdapter);
 
         mLvShow.setOnItemClickListener(new AdapterView.OnItemClickListener() {

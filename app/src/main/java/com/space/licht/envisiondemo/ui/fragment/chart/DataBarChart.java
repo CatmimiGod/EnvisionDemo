@@ -25,7 +25,7 @@ import java.util.List;
  * 邮箱：657083984@qq.com
  * 柱形图表
  */
-public class BarChart extends View {
+public class DataBarChart extends View {
     private Context mContext;
     /**
      * 背景的颜色
@@ -122,17 +122,17 @@ public class BarChart extends View {
         void onClick(int position);
     }
 
-    public BarChart(Context context) {
+    public DataBarChart(Context context) {
         super(context);
         init(context);
     }
 
-    public BarChart(Context context, AttributeSet attrs) {
+    public DataBarChart(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public BarChart(Context context, AttributeSet attrs, int defStyleAttr) {
+    public DataBarChart(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -276,10 +276,10 @@ public class BarChart extends View {
         mBarRect.bottom = (int) (mTotalHeight - topMargin / 2 - text2Paint.getTextSize());
         Log.i("StartIndex", "xStartIndex" + xStartIndex + "barWidth:" + barWidth + "barSpace" + barSpace + "leftMoving" + leftMoving);
 
-        for (int i = mData.size()-1; i >= 0; i--) {
+        for (int i = mData.size() - 1; i >= 0; i--) {
             if (!"Unused".equals(mData.get(i).getNamed())) {
-                mBarRect.left = (int) (xStartIndex + barWidth * (mData.size()- i-1) + barSpace * (mData.size()- i) - leftMoving);
-                mBarRect.top = (int) yStartIndex - (int) ((maxHeight * (mData.get(i).getVoiceUsed()) / maxDivisionValue));
+                mBarRect.left = (int) (xStartIndex + barWidth * (mData.size() - i - 1) + barSpace * (mData.size() - i) - leftMoving);
+                mBarRect.top = (int) yStartIndex - (int) ((maxHeight * (mData.get(i).getDataUsed()) / maxDivisionValue));
                 mBarRect.right = mBarRect.left + barWidth - 10;
                 mBarLeftXPoints.add(mBarRect.left);
                 mBarRightXPoints.add(mBarRect.right);
@@ -289,14 +289,14 @@ public class BarChart extends View {
 
                 Rect mBarRects = new Rect();
                 mBarRects.bottom = mBarRect.top;
-                mBarRects.top = (int) (mBarRect.top - maxHeight * ((mData.get(i).getVoice() * 45 - mData.get(i).getVoiceUsed()) / 1400f));
+                mBarRects.top = (int) (mBarRect.top - maxHeight * ((mData.get(i).getDataTime() * 45 - mData.get(i).getDataUsed()) / 1400f));
                 mBarRects.left = mBarRect.left;
                 mBarRects.right = mBarRect.right;
                 barPaint.setColor(mData.get(i).getTotalColor());
                 canvas.drawRect(mBarRects, barPaint);
 
-                canvas.drawText("" + mData.get(i).getVoiceUsed(), mBarRect.left, mBarRect.top + 25, text2Paint);
-                canvas.drawText("" + mData.get(i).getVoice() * 45, mBarRect.left, mBarRects.top, text2Paint);
+                canvas.drawText("" + mData.get(i).getDataUsed(), mBarRect.left, mBarRect.top + 25, text2Paint);
+                canvas.drawText("" + mData.get(i).getDataTime() * 45, mBarRect.left, mBarRects.top, text2Paint);
             }
         }
 
@@ -348,9 +348,9 @@ public class BarChart extends View {
             if (startY < topMargin / 2) {
                 break;
             }
-            String[] arr = {"200", "600", "1000", "1400",""};
+            String[] arr = {"200", "600", "1000", "1400", ""};
             String text = arr[i];
-            canvas.drawText(text, xStartIndex - textPaint.measureText(text) - 15, startY , text2Paint);
+            canvas.drawText(text, xStartIndex - textPaint.measureText(text) - 15, startY, text2Paint);
         }
     }
 
@@ -360,9 +360,12 @@ public class BarChart extends View {
      * @param canvas
      */
     private void drawXAxisText(Canvas canvas) {
+
         String[] arr = {"Father", "Wife", "Son", "Daughter", "Ipad",mData.get(1).getNamed()};
 
+        float distance = 0;
         for (int i = 0; i < mData.size()-1; i++) {
+            distance = xStartIndex + barWidth * i + barSpace * (i + 1) - leftMoving;
             String text =arr[i];
             canvas.drawText(text, mBarLeftXPoints.get(i) - (textPaint.measureText(text) - barWidth) / 2 - 20, paintBottom + DensityUtil.dip2px(getContext(), 10), text2Paint);
         }

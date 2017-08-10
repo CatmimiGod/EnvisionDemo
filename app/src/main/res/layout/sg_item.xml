@@ -74,8 +74,6 @@
         android:id="@+id/ll_start_inform_aviation_content"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:background="@color/gray_bg"
         android:orientation="vertical">
         <com.space.licht.envisiondemo.widget.textview.BoldTextView
